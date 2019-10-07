@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTDFrotas", "JTDFrotas\JTDFrotas.csproj", "{9AF69C2D-4BE5-4F0D-8C0C-F3AD8CD47FBD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388} = {11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTDLib", "JTDLib\JTDLib.csproj", "{11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9AF69C2D-4BE5-4F0D-8C0C-F3AD8CD47FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AF69C2D-4BE5-4F0D-8C0C-F3AD8CD47FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AF69C2D-4BE5-4F0D-8C0C-F3AD8CD47FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AF69C2D-4BE5-4F0D-8C0C-F3AD8CD47FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64D1C21E-9BAE-4F33-A60B-9EA42E0F9C47}
+	EndGlobalSection
+EndGlobal
