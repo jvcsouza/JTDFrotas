@@ -14,17 +14,16 @@ namespace JTDFrotas
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            // Use a versão em desenvolvimento do Modernizr para desenvolver e aprender. Em seguida, quando estiver
-            // pronto para a produção, utilize a ferramenta de build em https://modernizr.com para escolher somente os testes que precisa.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            var css = new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/css/site.css",
+                      "~/Content/css/main.css",
+                      "~/Content/css/util.css",
+                      "~/Content/vendor/bootstrap/css/bootstrap.min.css",
+                      "~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css",
+                      "~/Content/fonts/Linearicons-Free-v1.0.0/icon-font.min.css");
+            css.Transforms.Add(new CssMinify());
+            bundles.Add(css);
         }
     }
 }

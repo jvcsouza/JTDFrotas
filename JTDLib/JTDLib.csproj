@@ -166,12 +166,22 @@
     <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
     </Reference>
+    <Reference Include="WebMatrix.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.1.0.20105.408\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.1.1\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JTDContext.cs" />
     <Compile Include="Migrations\20191006224434_Init.cs" />
     <Compile Include="Migrations\20191006224434_Init.designer.cs">
       <DependentUpon>20191006224434_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20191023161731_addUsernameToUsers.cs" />
+    <Compile Include="Migrations\20191023161731_addUsernameToUsers.designer.cs">
+      <DependentUpon>20191023161731_addUsernameToUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\JTDContextModelSnapshot.cs" />
     <Compile Include="Model\City.cs" />

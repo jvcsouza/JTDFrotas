@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Net.Http;
+using WebMatrix.WebData;
 
 namespace JTDFrotas
 {
@@ -14,6 +11,7 @@ namespace JTDFrotas
     {
         protected void Application_Start()
         {
+            WebSecurity.InitializeDatabaseConnection("JTDContext", "User", "Id", "Username", true);
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
