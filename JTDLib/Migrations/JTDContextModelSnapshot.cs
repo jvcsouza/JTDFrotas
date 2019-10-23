@@ -27,7 +27,7 @@ namespace JTDLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brand");
                 });
 
             modelBuilder.Entity("JTDLib.Model.City", b =>
@@ -45,7 +45,7 @@ namespace JTDLib.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Cities");
+                    b.ToTable("Citie");
                 });
 
             modelBuilder.Entity("JTDLib.Model.LegalPerson", b =>
@@ -79,7 +79,7 @@ namespace JTDLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Licenses");
+                    b.ToTable("License");
                 });
 
             modelBuilder.Entity("JTDLib.Model.Maintenance", b =>
@@ -121,7 +121,7 @@ namespace JTDLib.Migrations
 
                     b.HasIndex("PartId");
 
-                    b.ToTable("MaintenanceParts");
+                    b.ToTable("MaintenancePart");
                 });
 
             modelBuilder.Entity("JTDLib.Model.MaintenanceType", b =>
@@ -133,7 +133,7 @@ namespace JTDLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MaintenanceTypes");
+                    b.ToTable("MaintenanceType");
                 });
 
             modelBuilder.Entity("JTDLib.Model.Model", b =>
@@ -183,7 +183,7 @@ namespace JTDLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Parts");
+                    b.ToTable("Part");
                 });
 
             modelBuilder.Entity("JTDLib.Model.Person", b =>
@@ -223,7 +223,7 @@ namespace JTDLib.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Phones");
+                    b.ToTable("Phone");
                 });
 
             modelBuilder.Entity("JTDLib.Model.State", b =>
@@ -239,7 +239,7 @@ namespace JTDLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("States");
+                    b.ToTable("State");
                 });
 
             modelBuilder.Entity("JTDLib.Model.Travel", b =>
@@ -271,7 +271,7 @@ namespace JTDLib.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Travels");
+                    b.ToTable("Travel");
                 });
 
             modelBuilder.Entity("JTDLib.Model.User", b =>
@@ -283,9 +283,11 @@ namespace JTDLib.Migrations
 
                     b.Property<string>("Password");
 
+                    b.Property<string>("Username");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("JTDLib.Model.Vehicle", b =>
@@ -323,7 +325,7 @@ namespace JTDLib.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vehicle");
                 });
 
             modelBuilder.Entity("JTDLib.Model.VehiclesType", b =>
