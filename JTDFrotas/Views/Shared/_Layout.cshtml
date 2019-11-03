@@ -8,36 +8,20 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <input type="text" name="name" id="name" value="teste" />
-                </button>
-                @Html.ActionLink("Nome do aplicativo", "Index", "Login", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Início", "Index", "Login", new { id = 2 }, "")</li>
-                    @*<li>@Html.ActionLink("Sobre", "About", "Home")</li>*@
-                    @*<li>@Html.ActionLink("Contato", "Contact", "Home")</li>*@
-                </ul>
-            </div>
+    <nav class="navbar navbar-dark flex-md-nowrap fixed-top bg-dark pt-0 pb-0 shadow">
+        <a class="navbar-brand mr-0" href="#">JTDFrotas</a>
+        <ul class="navbar nav">
+            <li class="nav-item">
+                <a href="#" class="nav-link">content</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="bg-light sidebar">
+                <div class="sidebar-sticky"></div>
+            </nav>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

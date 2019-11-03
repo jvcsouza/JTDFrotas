@@ -1,0 +1,59 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title"><one-translate resource="lblSelectTheAttendant"></one-translate></h3>
+</div>
+
+<div class="modal-body login-select-brand-modal">
+    <div class="lists-detail login-select-brand-modal-content">
+        <div class="container-tags tags-search login-html-fix-input-search-style">
+            <div class="masterInput">
+                <div class="form-group">
+                    <div class="position-relative">
+                        <input one-phtranslate="lblSearchFor" id="enableSupportSearchFor"
+                            ng-model="userSearch" name="enableSupportSearchFor"
+                            class="form-control one-input-validation" focus-me="true">
+                    </div>
+
+                    <div class="clear-both"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordeon-content accordeon-content-mobile-property padding-support">
+            <div ng-repeat="user in users | filter: userSearch | orderBy : 'Name' " class="col-sm-6 col-md-4 col-lg-4" ng-click="selectUser(user)">
+                <div class="card-image-box card-property cursor-pointer">
+                    <div class="card-image img-avatar card-avatar-attendant">
+                        <img one-avatar stop-watch="true" first="user.Name" last="" ng-src="{{::user.Picture}}">
+                    </div>
+                    <div class="col-xs-10 no-padding margin-left-10">
+                        <div class="reticencias-nowrap">
+                            <strong ng-bind="::' ' + user.Name"></strong>
+                        </div>
+                        <div class="corte-tres-pontos">
+                            <div class="login-qtd-group-style">
+                                <div class="login-qtd-itens-style">
+                                    <span class="text-word-wrap font-family-montserrat-light" ng-bind="::user.Mail"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+            </div>
+            <div class="clear-both"></div>
+        </div>
+    </div>
+</div>
+    
+<div class="modal-footer">
+    <div class="hide-xs-sm">
+        <button class="btn btn-big-radius btn-cancel pull-right" type="button" ng-click="cancel()" one-tltranslate="lblCancel">
+            <one-translate resource="lblCancel">Cancelar</one-translate>
+        </button>
+    </div>
+
+    <div class="hide-sm-xs">
+        <button class="button-icon pull-right" type="button" ng-click="cancel()" one-tltranslate="lblCancel">
+            <em class="material-icons icon">clear</em>
+        </button>
+    </div>
+</div>

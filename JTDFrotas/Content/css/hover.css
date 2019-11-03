@@ -1,0 +1,8 @@
+﻿.menu-hover:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    /*box-shadow: #343a40 -12px 13px 35px 0px;*/
+    border-radius: 20px 0px 0px 20px;
+    transition: all cubic-bezier(1,1,1,0) 0.2s;
+}
