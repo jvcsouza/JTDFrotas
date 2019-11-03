@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTDFrotas", "JTDFrotas\JTDF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTDLib", "JTDLib\JTDLib.csproj", "{11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JTDBusiness", "JTDBusiness\JTDBusiness.csproj", "{BD67539A-293D-40F9-B5DA-2E178E01C767}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTDWebApp", "JTDWebApp\JTDWebApp.csproj", "{E8E13D35-439E-4DE3-A643-22B543A4A17B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +28,14 @@ Global
 		{11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11D8B0E1-1DF5-4F0D-BB83-7C6F287A2388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD67539A-293D-40F9-B5DA-2E178E01C767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD67539A-293D-40F9-B5DA-2E178E01C767}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD67539A-293D-40F9-B5DA-2E178E01C767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD67539A-293D-40F9-B5DA-2E178E01C767}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E13D35-439E-4DE3-A643-22B543A4A17B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E13D35-439E-4DE3-A643-22B543A4A17B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E13D35-439E-4DE3-A643-22B543A4A17B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E13D35-439E-4DE3-A643-22B543A4A17B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Filters;
 using System.Web.Mvc;
 
 namespace JTDFrotas.Controllers
@@ -14,11 +15,12 @@ namespace JTDFrotas.Controllers
         {
 
         }
-
+        
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
-        } 
+            throw new Exception("Alô");
+            //return View();        
+        }
     }
 }

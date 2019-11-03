@@ -1,0 +1,103 @@
+﻿<div class="modal-dashboard-main">
+
+    <div class="modal-header">
+        <h3 class="modal-title" id="dashboardTitle"><one-translate resource="lblAddWidget"></one-translate></h3>
+    </div>
+
+    <div class="modal-dashboard-itens login-select-brand-modal">
+        <div class="col-md-12 modal-dashboard-filter">
+            <!-- Menu Name Search -->
+            <div class="container-tags tags-search login-html-fix-input-search-style">
+                <div class="masterInput">
+                    <div class="form-group">
+                        <div class="position-relative">
+                            <input one-phtranslate="lblSearchFor" id="modalDashboardSearchFor"
+                                ng-model="dashboardSearch" name="modalDashboardSearchFor"
+                                class="form-control one-input-validation" focus-me="true">
+                        </div>
+
+                        <div class="clear-both"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 modal-dashboard-charts">
+
+            <div class="row modal-dashboard-charts-repeat" ng-repeat="list in listData | filter: dashboardSearch | orderBy : 'title' " >
+                <div class="modal-dashboard-charts-list">
+
+                    <div class="col-md-6 no-padding dashboard-box">
+                        <div class="modal-dashboard-charts-item content" ng-class="{ 'resize' : !list.chartC3, 'resize-out' : list.mediumSize }">
+                            <div class="header">
+                                <span class="material-icons">more_vert</span>
+                                <span class="text" ng-bind="list.title"></span>
+                            </div>
+
+                            <div class="chart-c3" ng-class="{ 'padding-right-20' : list.paddingFix }" ng-if="list.chartC3">
+                                <div ng-if="list.title2" class="text-center">
+                                    <small ng-bind="list.title2"></small>
+                                </div>
+                                <c3-chart config="list.config" dconfig="list.dataConfig" columns="list.data"></c3-chart>
+                            </div>
+
+                            <div class="modal-widget-dashboard">
+                                <div class="chart" ng-if="!list.chartC3">
+                                    <span class="color-primary font-size-24 font-family-montserrat-bold" ng-bind="list.value"></span>
+                                </div>
+    
+                                <div class="col-xs-12 no-padding text-align-center" ng-if="list.showLink">
+                                    <a ng-if="list.showLink" class="col-xs-12 no-padding cursor-pointer font-family-montserrat-light text-underline"><one-translate resource="lblViewFolios"></one-translate></a>
+                                </div>
+                            </div>
+
+                            <div ng-if="list.groupBars" class="text-center margin-top-20">
+                                <div>Month</div>
+                                <select class="" name="">
+                                    <option value="">jan</option>
+                                    <option value="">fev</option>
+                                </select>
+                            </div>
+
+                            <div class="clear-both"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 no-padding">
+                        <div class="modal-dashboard-charts-list-title">
+                            <div class="pull-left">
+                                <strong ng-bind="list.title"></strong>
+                            </div>
+                            <div class="pull-right">
+                                <one-switch id="dashboard{{$index}}" ng-model="list.active" ng-checked="list.active" ng-change="changeActive(list, $index)"></one-switch>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+
+                        <div class="modal-dashboard-charts-list-content">
+                            <span ng-bind="list.description"></span>
+                        </div>
+                    </div>
+
+                    <div class="clear-both"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="clear-both"></div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="modal-footer">
+
+        <button type="submit" id="saveWidgets" class="button-icon btn-blue no-padding" ng-click="saveWidgets()" one-tltranslate="lblConfirm">
+            <em class="material-icons icon">done</em>
+        </button>
+
+        <button id="abandonWidgets" class="button-icon no-padding" ng-click="cancel()" one-tltranslate="lblCancel">
+            <em class="material-icons icon">clear</em>
+        </button>
+    </div>
+
+</div>

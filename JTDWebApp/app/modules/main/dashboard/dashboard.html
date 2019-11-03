@@ -1,0 +1,79 @@
+﻿<div ng-init="initialize()" class="table-max-width col-md-12">
+	<div class="col-md-9">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<span><one-translate resource="lblLast12Months"></one-translate></span>
+			</div>
+
+			<div class="clear-both"></div><br />
+			
+			<div class="col-md-12">
+
+				<div class="dashboard-box">
+					<div class="title">
+						<span><one-translate resource="lblChart"></one-translate></span>
+					</div>
+					<div class="content padding-bottom-10">
+						<div id="chart"></div>
+					    <c3-chart config="config" dconfig="dataConfig" columns="data"></c3-chart>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<span><one-translate resource="lblYearToDate"></one-translate></span>
+			</div>
+
+			<div class="clear-both"></div><br /> 
+			
+			<div class="col-md-12">
+
+				<div class="dashboard-box">
+					<div class="title">
+						<span><one-translate resource="lblOCC"></one-translate></span>
+					</div>
+					<div class="content padding-bottom-10">
+						<c3-chart config="dataConfigDonut" dconfig="dataConfigDonut" columns="dataDonut"></c3-chart>
+					</div>
+				</div>
+			</div>
+
+			<div class="clear-both"></div><br />
+
+			<div class="col-md-12">
+				<div class="row">
+
+					<div class="col-md-5">
+						<div class="dashboard-box">
+							<div class="title">
+								<span><one-translate resource="lblADR"></one-translate></span>
+							</div>
+							<div class="content padding-10 text-center">
+								<!--$145-->
+                                <span ng-bind="dataAdrRevparCurrentYear.RevPar"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-2"></div>
+
+					<div class="col-md-5">
+						<div class="dashboard-box">
+							<div class="title">
+								<span><one-translate resource="lblRevPar"></one-translate></span>
+							</div>
+							<div class="content padding-10 text-center">
+								<!--$128-->
+                                <span ng-bind="dataAdrRevparCurrentYear.ADR"></span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

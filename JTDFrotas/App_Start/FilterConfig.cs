@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using JTDFrotas.Filters;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace JTDFrotas
@@ -7,7 +8,12 @@ namespace JTDFrotas
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
+            //filters.Add(new ApplicationExceptionFilter());
             filters.Add(new HandleErrorAttribute());
+        }
+        public static void Register(HttpConfiguration config)
+        {
+            config.Filters.Add(new ApplicationExceptionFilter());
         }
     }
 }

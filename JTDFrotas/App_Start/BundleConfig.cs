@@ -15,9 +15,11 @@ namespace JTDFrotas
                         "~/Scripts/jquery.validate*"));
 
             var css = new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
                       "~/Content/css/site.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/css/main.css",
+                      "~/Content/css/texts.css",
+                      "~/Content/css/hover.css",
                       "~/Content/css/util.css",
                       "~/Content/vendor/bootstrap/css/bootstrap.min.css",
                       "~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css",
