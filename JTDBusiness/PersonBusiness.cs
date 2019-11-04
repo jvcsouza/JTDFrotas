@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JTDBusiness
 {
-    public abstract class PersonBusiness : IPersonService
+    public class PersonBusiness : IPersonService
     {
         JTDContext _context;
 
