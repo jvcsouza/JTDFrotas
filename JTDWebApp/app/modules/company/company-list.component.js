@@ -6,11 +6,13 @@ export const companyListComponent = {
 	controller: ['$scope','companyServices', ($scope, companyServices) => {
 		$scope.hello = "Hello";
 
-		console.log(companyServices);
+		// console.log(companyServices);
+
+		$scope.teste = (t) => alert("Editando usuario: " + t);
 
 		companyServices.getCompanies()
-		.success(r => console.log(r))
-		.error(e => console.log(e));
+		.success(r => $scope.companies = r)
+		.error(e => console.log(e));11
 
 	}]
 };

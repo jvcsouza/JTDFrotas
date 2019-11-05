@@ -23,6 +23,11 @@ namespace JTDLib
         public DbSet<VehiclesType> VehiclesType { get; set; }
         public DbSet<Travel> Travel { get; set; }
 
+        public JTDContext()
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(local)\\sqlexpress;Database=JTDFROTAS;Trusted_Connection=true");

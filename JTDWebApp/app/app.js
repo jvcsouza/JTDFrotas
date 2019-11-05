@@ -13,10 +13,13 @@ import {
     , companyFutureState
 } from "./app-config-routes";
 
-var jtdFrotas = angular.module('jtdFrotas', [ocLazyLoad, uiRouter]);
+require("angular-block-ui");
 
-// import { setHtml5Mode } from "./app-config";
-// jtdFrotas.config(setHtml5Mode);
+var jtdFrotas = angular.module('jtdFrotas', ['blockUI', ocLazyLoad, uiRouter]);
+
+import { blockUIConfig, Interceptor } from "./app-config";
+jtdFrotas.config(blockUIConfig);
+jtdFrotas.config(['$httpProvider', Interceptor]);
 
 jtdFrotas.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $locationProvider) => {
     $uiRouter.plugin(DSRPlugin);

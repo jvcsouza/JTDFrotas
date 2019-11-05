@@ -21,11 +21,13 @@ const companyListComponent = {
 	controller: ['$scope','companyServices', ($scope, companyServices) => {
 		$scope.hello = "Hello";
 
-		console.log(companyServices);
+		// console.log(companyServices);
+
+		$scope.teste = (t) => alert("Editando usuario: " + t);
 
 		companyServices.getCompanies()
-		.success(r => console.log(r))
-		.error(e => console.log(e));
+		.success(r => $scope.companies = r)
+		.error(e => console.log(e));11
 
 	}]
 };
@@ -39,7 +41,7 @@ const companyListComponent = {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\r\n\t<label>{{hello}} World!</label>\r\n</body>";
+module.exports = "<h3>Companias</h3>\r\n      <div class=\"table-responsive\">\r\n        <table class=\"table table-striped table-sm\">\r\n          <thead>\r\n            <tr>\r\n              <th>#</th>\r\n              <th>Nome</th>\r\n              <th>Cidade</th>\r\n\t\t\t  <th>Endereço</th>\r\n\t\t\t  <th>Número</th>\r\n              <th>Ativo</th>\r\n            </tr>\r\n          </thead>\r\n          <tbody>\r\n            <tr ng-repeat=\"com in companies\">\r\n              <td ng-click=\"teste(com.Name)\"><a href=\"#companies\">{{com.Id}}</a></td>\r\n              <td>{{com.Name}}</td>\r\n              <td>{{com.Cities}}</td>\r\n\t\t\t  <td>{{com.Address}}</td>\r\n\t\t\t  <td>{{com.Number}}</td>\r\n              <td><input type=\"checkbox\" ng-disabled=true ng-checked=\"com.Act\"></td>\r\n\t\t\t</tr>\r\n          </tbody>\r\n        </table>\r\n      </div>";
 
 /***/ }),
 
