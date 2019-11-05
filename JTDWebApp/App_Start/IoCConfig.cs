@@ -2,10 +2,7 @@
 using JTDLib;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using SimpleInjector.Lifestyles;
 using System.Web.Http;
 
 namespace JTDWebApp.App_Start
@@ -15,7 +12,8 @@ namespace JTDWebApp.App_Start
         public static void Registrar(HttpConfiguration config)
         {
             var container = new Container();
-            container.RegisterSingleton<JTDContext>();
+            container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+            container.Register<JTDContext>(() => new JTDContext(), Lifestyle.Scoped);
             container.Register<IPersonService, PersonBusiness>();
             container.RegisterWebApiControllers(config);
             GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);

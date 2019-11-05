@@ -337,6 +337,68 @@ const testeFutureState = {
 
 /***/ }),
 
+/***/ "./app/app-config.js":
+/*!***************************!*\
+  !*** ./app/app-config.js ***!
+  \***************************/
+/*! exports provided: setHtml5Mode, blockUIConfig, Interceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setHtml5Mode", function() { return setHtml5Mode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blockUIConfig", function() { return blockUIConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Interceptor", function() { return Interceptor; });
+const setHtml5Mode = ($locationProvider) => $locationProvider.html5Mode(true);
+
+blockUIConfig.$inject = ['blockUIConfig'];
+function blockUIConfig(blockUiConfig) {
+    // Change the default overlay message
+    blockUiConfig.message = 'alo';
+
+    // Change the default delay to 100ms before the blocking is visible
+    blockUiConfig.delay = 500;
+
+    blockUiConfig.requestFilter = function (config) {
+        switch (config.method) {
+            case 'GET':
+                console.log("GET");
+                break;
+            case 'POST':
+            console.log("POST");
+                break;
+
+            case 'DELETE':
+            console.log("DELETE");
+                break;
+
+            case 'PUT':
+            console.log("PUT");
+                break;
+
+            default:
+            console.log("EUEM");
+        };
+    };
+};
+
+function Interceptor($httpProvider) {
+    $httpProvider.interceptors.push(() => {
+        return {
+            response: (data) => {
+                return data;
+            },
+            request: (config) => {
+                config.headers.token = "JKOHFSUIOFHIOASFNOPSM";
+                console.log(config);
+                return config;
+            }
+        }
+    });     
+}
+
+/***/ }),
+
 /***/ "./app/app.js":
 /*!********************!*\
   !*** ./app/app.js ***!
@@ -356,6 +418,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _uirouter_dsr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @uirouter/dsr */ "./node_modules/@uirouter/dsr/lib/index.js");
 /* harmony import */ var _uirouter_dsr__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_uirouter_dsr__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _app_config_routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app-config-routes */ "./app/app-config-routes.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app-config */ "./app/app-config.js");
 
 
 
@@ -366,10 +429,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var jtdFrotas = angular__WEBPACK_IMPORTED_MODULE_0__["module"]('jtdFrotas', [oclazyload__WEBPACK_IMPORTED_MODULE_4___default.a, _uirouter_angularjs__WEBPACK_IMPORTED_MODULE_1__["default"]]);
+__webpack_require__(/*! angular-block-ui */ "./node_modules/angular-block-ui/dist/angular-block-ui.js");
 
-// import { setHtml5Mode } from "./app-config";
-// jtdFrotas.config(setHtml5Mode);
+var jtdFrotas = angular__WEBPACK_IMPORTED_MODULE_0__["module"]('jtdFrotas', ['blockUI', oclazyload__WEBPACK_IMPORTED_MODULE_4___default.a, _uirouter_angularjs__WEBPACK_IMPORTED_MODULE_1__["default"]]);
+
+
+jtdFrotas.config(_app_config__WEBPACK_IMPORTED_MODULE_7__["blockUIConfig"]);
+jtdFrotas.config(['$httpProvider', _app_config__WEBPACK_IMPORTED_MODULE_7__["Interceptor"]]);
 
 jtdFrotas.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $locationProvider) => {
     $uiRouter.plugin(_uirouter_dsr__WEBPACK_IMPORTED_MODULE_5__["DSRPlugin"]);
@@ -407,7 +473,7 @@ __webpack_require__.r(__webpack_exports__);
 ﻿//import "./global.module";
 
 
-//import "./app-run";
+// import "./app-run";
 
 
 

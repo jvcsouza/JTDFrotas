@@ -23,7 +23,10 @@ namespace JTDBusiness
 
         public async Task<List<Person>> GetAll()
         {
-            return await _context.Person.ToListAsync();
+            var con = _context;
+            var person = _context.Person;
+            var l = await person.ToListAsync();
+            return l;
         }
 
         public void Register(Person person)
