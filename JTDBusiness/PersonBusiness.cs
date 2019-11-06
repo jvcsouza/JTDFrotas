@@ -18,13 +18,13 @@ namespace JTDBusiness
 
         public Person GetPerson(int id)
         {
-            return _context.Person.Where(p => p.Id == id).FirstOrDefault();
+            return _context.Persons.Where(p => p.Id == id).FirstOrDefault();
         }
 
         public async Task<List<Person>> GetAll()
         {
             var con = _context;
-            var person = _context.Person;
+            var person = _context.Persons;
             var l = await person.ToListAsync();
             return l;
         }

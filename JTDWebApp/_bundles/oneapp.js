@@ -362,39 +362,50 @@ function blockUIConfig(blockUiConfig) {
     blockUiConfig.requestFilter = function (config) {
         switch (config.method) {
             case 'GET':
-                console.log("GET");
+                window.EasyLoading.show({
+                    text: "Getting...",
+                    type: window.EasyLoading.TYPE.BALL_SCALE_MULTIPLE,
+                    button: null
+                });
                 break;
             case 'POST':
-            console.log("POST");
+                console.log("POST");
                 break;
 
             case 'DELETE':
-            console.log("DELETE");
+                console.log("DELETE");
                 break;
 
             case 'PUT':
-            console.log("PUT");
+                console.log("PUT");
                 break;
 
             default:
-            console.log("EUEM");
+                console.log("EUEM");
         };
     };
 };
 
-function Interceptor($httpProvider) {
+function Interceptor($httpProvider, jquery) {
     $httpProvider.interceptors.push(() => {
         return {
             response: (data) => {
+                window.EasyLoading.hide();
                 return data;
+
             },
             request: (config) => {
+                window.EasyLoading.show({
+                    text: "Loading...",
+                    type: window.EasyLoading.TYPE.BALL_SCALE_MULTIPLE,
+                    button: null
+                });
+                //window.$('#containerAll').preloader();
                 config.headers.token = "JKOHFSUIOFHIOASFNOPSM";
-                console.log(config);
                 return config;
             }
         }
-    });     
+    });
 }
 
 /***/ }),
@@ -430,6 +441,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 __webpack_require__(/*! angular-block-ui */ "./node_modules/angular-block-ui/dist/angular-block-ui.js");
+__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 var jtdFrotas = angular__WEBPACK_IMPORTED_MODULE_0__["module"]('jtdFrotas', ['blockUI', oclazyload__WEBPACK_IMPORTED_MODULE_4___default.a, _uirouter_angularjs__WEBPACK_IMPORTED_MODULE_1__["default"]]);
 

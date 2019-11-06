@@ -14,13 +14,14 @@ namespace JTDWebApp
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-	    /*Angular Scripts*/
+	        /*Angular Scripts*/
             var angularScripts = new ScriptBundle("~/bundles/angular-main-scripts").Include(
                 "~/_bundles/vendors~oneapp.*",
                 "~/_bundles/oneapp.*",
-                "~/scripts/stickyStates.js");
+                "~/scripts/stickyStates.js",
+                "~/scripts/easy-loading.min.js");
 		
-	    bundles.Add(angularScripts);
+	        bundles.Add(angularScripts);
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular.min.js",
@@ -36,8 +37,9 @@ namespace JTDWebApp
             //          "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      //"~/Content/bootstrap.css",
+                      "~/Content/easy-loading.min.css"));
+                      //"~/Content/site.css"));
         }
     }
 }

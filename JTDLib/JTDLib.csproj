@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -183,11 +185,15 @@
     <Compile Include="Migrations\20191023161731_addUsernameToUsers.designer.cs">
       <DependentUpon>20191023161731_addUsernameToUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20191106062613_alterPersonAttributes.cs" />
+    <Compile Include="Migrations\20191106062613_alterPersonAttributes.designer.cs">
+      <DependentUpon>20191106062613_alterPersonAttributes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\JTDContextModelSnapshot.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\State.cs" />
-    <Compile Include="Model\NaturalPerson.cs" />
-    <Compile Include="Model\LegalPerson.cs" />
+    <Compile Include="Model\Guest.cs" />
+    <Compile Include="Model\Company.cs" />
     <Compile Include="Model\Maintenance.cs" />
     <Compile Include="Model\Brand.cs" />
     <Compile Include="Model\Model.cs" />

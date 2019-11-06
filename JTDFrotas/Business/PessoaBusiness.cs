@@ -17,12 +17,12 @@ namespace JTDFrotas.Business
 
         public Person GetPerson(int id)
         {
-            return _context.Person.Where(p => p.Id == id).FirstOrDefault();
+            return _context.Persons.Where(p => p.Id == id).FirstOrDefault();
         }
 
         public List<Person> GetAll()
         {
-            return _context.Person.ToList();
+            return _context.Persons.ToList();
         }
 
         public void Register(Person person)
