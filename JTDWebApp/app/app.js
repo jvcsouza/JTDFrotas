@@ -14,6 +14,7 @@ import {
 } from "./app-config-routes";
 
 require("angular-block-ui");
+require("jquery");
 
 var jtdFrotas = angular.module('jtdFrotas', ['blockUI', ocLazyLoad, uiRouter]);
 

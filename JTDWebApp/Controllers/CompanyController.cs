@@ -1,4 +1,5 @@
 ﻿using JTDBusiness;
+using JTDBusiness.Interfaces;
 using JTDLib.Model;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,28 @@ namespace JTDWebApp.Controllers
     [RoutePrefix("api/company")]
     public class CompanyController : ApiController
     {
-        private IPersonService _personService;
+        private IPersonService _service;
 
-        public CompanyController(IPersonService personService)
+        public CompanyController(IPersonService service)
         {
-            _personService = personService;
+            _service = service;
         }
 
         [HttpGet]
         [Route("")]
         public async Task<IHttpActionResult> get()
         {
-            var p = new List<Person>();
-            
-            p = await _personService.GetAll();
-            
+            //var t = await _service.GetCompany(1);
+            var p = new List<Person>()
+            {
+               //new Person
+               //{
+               //    Name = t.Name,
+               //}
+            };
+
+            p = await _service.GetAll();
+
             return Ok(p);
         }
     }

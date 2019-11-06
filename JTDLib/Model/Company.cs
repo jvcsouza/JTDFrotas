@@ -1,6 +1,6 @@
 ﻿namespace JTDLib.Model
 {
-    public class LegalPerson
+    public class Company
     {
         public int Id { get; set; }
         public Person Person { get; set; }

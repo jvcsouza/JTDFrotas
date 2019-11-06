@@ -1,5 +1,4 @@
 import angular from "angular";
-import { companyServices } from "./company.services";
 
 export const companyListComponent = {
 	template: require('./company-list.html'),
@@ -12,7 +11,6 @@ export const companyListComponent = {
 
 		companyServices.getCompanies()
 		.success(r => $scope.companies = r)
-		.error(e => console.log(e));11
-
+		.error(e => console.log(e));
 	}]
 };

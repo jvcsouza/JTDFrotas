@@ -277,18 +277,51 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompanyDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app-config-compileProvider.js" />
     <Content Include="app\app-config-provide.js" />
     <Content Include="app\app-config-routes.js" />
     <Content Include="app\app-config.js" />
+    <Content Include="app\app-run.js" />
     <Content Include="app\app.js" />
+    <Content Include="app\application.module.js" />
+    <Content Include="app\assets\bootstrap.min.css" />
+    <Content Include="app\assets\estilos.css" />
+    <Content Include="Content\easy-loading.min.css" />
+    <Content Include="Content\preloader.css" />
+    <Content Include="Scripts\easy-loading.min.js" />
+    <Content Include="Scripts\jquery.preloader.min.js" />
+    <Content Include="app\modules\company\company-list.component.js" />
+    <Content Include="app\modules\company\company-list.html" />
+    <Content Include="app\modules\company\company.module.js" />
+    <Content Include="app\modules\company\company.services.js" />
+    <Content Include="app\modules\company\company.states.js" />
+    <Content Include="app\modules\main\allComponentsController.js" />
+    <Content Include="app\modules\main\dashboard\dashboard-occupation.service.js" />
+    <Content Include="app\modules\main\dashboard\dashboard.component.js" />
+    <Content Include="app\modules\main\dashboard\dashboard.html" />
+    <Content Include="app\modules\main\dashboard\dashboard.service.js" />
+    <Content Include="app\modules\main\dashboard\modal-dashboard.component.js" />
+    <Content Include="app\modules\main\dashboard\modal-dashboard.html" />
+    <Content Include="app\modules\main\enumerator.service.js" />
+    <Content Include="app\modules\main\login\login.component.js" />
+    <Content Include="app\modules\main\login\login.html" />
+    <Content Include="app\modules\main\main.module.js" />
+    <Content Include="app\modules\main\main.states.js" />
+    <Content Include="app\modules\main\mainController.js" />
+    <Content Include="app\modules\main\menu\menu.service.js" />
+    <Content Include="app\modules\main\support\enable-support.component.js" />
+    <Content Include="app\modules\main\support\enable-support.html" />
+    <Content Include="app\modules\main\support\enable-support.service.js" />
     <Content Include="app\modules\teste\angular.js" />
     <Content Include="app\modules\teste\teste.component.js" />
     <Content Include="app\modules\teste\teste.html" />
     <Content Include="app\modules\teste\teste.module.js" />
     <Content Include="app\modules\teste\teste.states.js" />
+    <Content Include="app\views\home\home.html" />
     <Content Include="app\views\shared\_layout.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -1114,9 +1147,9 @@
     <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\assets\js\" />
     <Folder Include="app\directives\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Company\" />
   </ItemGroup>
   <ItemGroup>

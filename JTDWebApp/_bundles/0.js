@@ -12,8 +12,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "companyListComponent", function() { return companyListComponent; });
 /* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 /* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(angular__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _company_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./company.services */ "./app/modules/company/company.services.js");
-
 
 
 const companyListComponent = {
@@ -27,8 +25,7 @@ const companyListComponent = {
 
 		companyServices.getCompanies()
 		.success(r => $scope.companies = r)
-		.error(e => console.log(e));11
-
+		.error(e => console.log(e));
 	}]
 };
 

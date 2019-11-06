@@ -11,37 +11,48 @@ export function blockUIConfig(blockUiConfig) {
     blockUiConfig.requestFilter = function (config) {
         switch (config.method) {
             case 'GET':
-                console.log("GET");
+                window.EasyLoading.show({
+                    text: "Getting...",
+                    type: window.EasyLoading.TYPE.BALL_SCALE_MULTIPLE,
+                    button: null
+                });
                 break;
             case 'POST':
-            console.log("POST");
+                console.log("POST");
                 break;
 
             case 'DELETE':
-            console.log("DELETE");
+                console.log("DELETE");
                 break;
 
             case 'PUT':
-            console.log("PUT");
+                console.log("PUT");
                 break;
 
             default:
-            console.log("EUEM");
+                console.log("EUEM");
         };
     };
 };
 
-export function Interceptor($httpProvider) {
+export function Interceptor($httpProvider, jquery) {
     $httpProvider.interceptors.push(() => {
         return {
             response: (data) => {
+                window.EasyLoading.hide();
                 return data;
+
             },
             request: (config) => {
+                window.EasyLoading.show({
+                    text: "Loading...",
+                    type: window.EasyLoading.TYPE.BALL_SCALE_MULTIPLE,
+                    button: null
+                });
+                //window.$('#containerAll').preloader();
                 config.headers.token = "JKOHFSUIOFHIOASFNOPSM";
-                console.log(config);
                 return config;
             }
         }
-    });     
+    });
 }
