@@ -11,6 +11,7 @@ import {
     , home
     , testeFutureState
     , companyFutureState
+    , guestFutureState
 } from "./app-config-routes";
 
 require("angular-block-ui");
@@ -36,5 +37,6 @@ jtdFrotas.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $locatio
     $stateRegistry.register(home);
     $stateRegistry.register(testeFutureState);
     $stateRegistry.register(companyFutureState);
+    $stateRegistry.register(guestFutureState);
 }]);
 jtdFrotas.controller("mainController", mainControler);

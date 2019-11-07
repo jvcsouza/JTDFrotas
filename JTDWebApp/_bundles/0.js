@@ -23,9 +23,9 @@ const companyListComponent = {
 
 		$scope.teste = (t) => alert("Editando usuario: " + t);
 
-		companyServices.getCompanies()
-		.success(r => $scope.companies = r)
-		.error(e => console.log(e));
+        companyServices.getCompanies()
+            .success(r => $scope.companies = r);
+            //.error(e => { throw e; });
 	}]
 };
 
@@ -38,7 +38,7 @@ const companyListComponent = {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Companias</h3>\r\n      <div class=\"table-responsive\">\r\n        <table class=\"table table-striped table-sm\">\r\n          <thead>\r\n            <tr>\r\n              <th>#</th>\r\n              <th>Nome</th>\r\n              <th>Cidade</th>\r\n\t\t\t  <th>Endereço</th>\r\n\t\t\t  <th>Número</th>\r\n              <th>Ativo</th>\r\n            </tr>\r\n          </thead>\r\n          <tbody>\r\n            <tr ng-repeat=\"com in companies\">\r\n              <td ng-click=\"teste(com.Name)\"><a href=\"#companies\">{{com.Id}}</a></td>\r\n              <td>{{com.Name}}</td>\r\n              <td>{{com.Cities}}</td>\r\n\t\t\t  <td>{{com.Address}}</td>\r\n\t\t\t  <td>{{com.Number}}</td>\r\n              <td><input type=\"checkbox\" ng-disabled=true ng-checked=\"com.Act\"></td>\r\n\t\t\t</tr>\r\n          </tbody>\r\n        </table>\r\n      </div>";
+module.exports = "<h3>Companias</h3>\r\n<div class=\"table-responsive\">\r\n    <table class=\"table table-striped table-sm\">\r\n        <thead>\r\n            <tr>\r\n                <th>#</th>\r\n                <th>Nome</th>\r\n                <th>Cidade</th>\r\n                <th>Endereço</th>\r\n                <th>Número</th>\r\n                <th>Ativo</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr ng-if=\"companies.length > 0\" ng-repeat=\"com in companies\">\r\n                <td ng-click=\"teste(com.Name)\"><a href=\"#companies\">{{com.Id}}</a></td>\r\n                <td>{{com.Name}}</td>\r\n                <td>{{com.Cities}}</td>\r\n                <td>{{com.Address}}</td>\r\n                <td>{{com.Number}}</td>\r\n                <td><input type=\"checkbox\" ng-disabled=true ng-checked=\"com.Act\"></td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-center\" colspan=\"6\">Não existem dados...</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>";
 
 /***/ }),
 

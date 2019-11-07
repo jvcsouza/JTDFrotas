@@ -250,7 +250,7 @@ jtdFrotas.config(['$compileProvider', function ($compileProvider) {
 /*!**********************************!*\
   !*** ./app/app-config-routes.js ***!
   \**********************************/
-/*! exports provided: layout, home, companyFutureState, testeFutureState */
+/*! exports provided: layout, home, companyFutureState, testeFutureState, guestFutureState */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -259,6 +259,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "home", function() { return home; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "companyFutureState", function() { return companyFutureState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "testeFutureState", function() { return testeFutureState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guestFutureState", function() { return guestFutureState; });
 function viewCrudTemplate() {
     return '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>';
 };
@@ -299,7 +300,7 @@ const home = {
     },
     lazyLoad: function (transition) {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./modules/main/main.module */ "./app/modules/main/main.module.js")).then(mod => $ocLazyLoad.load(mod.MAIN_MODULE));
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./modules/main/main.module */ "./app/modules/main/main.module.js")).then(mod => $ocLazyLoad.load(mod.MAIN_MODULE));
     }
 };
 
@@ -331,9 +332,24 @@ const testeFutureState = {
     },
     lazyLoad: function (transition) {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./modules/teste/teste.module */ "./app/modules/teste/teste.module.js")).then(mod => $ocLazyLoad.load(mod.TESTE_MODULE));
+        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./modules/teste/teste.module */ "./app/modules/teste/teste.module.js")).then(mod => $ocLazyLoad.load(mod.TESTE_MODULE));
     }
 };
+
+const guestFutureState = {
+    parent: 'app',
+    name: 'guests.**',
+    url: '/guests',
+    views: {
+        'viewGuest': {
+            template: '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>'
+        }
+    },
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./modules/guest/guest.module */ "./app/modules/guest/guest.module.js")).then(mod => $ocLazyLoad.load(mod.GUEST_MODULE));
+    }
+}
 
 /***/ }),
 
@@ -386,7 +402,7 @@ function blockUIConfig(blockUiConfig) {
     };
 };
 
-function Interceptor($httpProvider, jquery) {
+function Interceptor($httpProvider) {
     $httpProvider.interceptors.push(() => {
         return {
             response: (data) => {
@@ -402,6 +418,24 @@ function Interceptor($httpProvider, jquery) {
                 });
                 //window.$('#containerAll').preloader();
                 config.headers.token = "JKOHFSUIOFHIOASFNOPSM";
+                return config;
+            },
+            responseError: (config) => {
+                console.log(config);
+                window.EasyLoading.hide();
+                window.x0popup({
+                    type: 'info',
+                    html: false,
+                    overlay: true,
+                    theme: 'default',
+                    title: config.data.Title,
+                    text: config.data.Message,
+                    autoClose: 5000,
+                    animation: true,
+                    animationType: 'fadeIn',
+                    buttons: null,
+                    overlayAnimation: true,
+                });
                 return config;
             }
         }
@@ -463,6 +497,7 @@ jtdFrotas.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $locatio
     $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["home"]);
     $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["testeFutureState"]);
     $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["companyFutureState"]);
+    $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["guestFutureState"]);
 }]);
 jtdFrotas.controller("mainController", _modules_main_mainController__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
@@ -534,7 +569,7 @@ function mainControler($scope, $injector, $uiRouter) {
 
     $scope.h = 'HELLO WORLD';
 
-    console.log($scope);
+    //console.log($scope);
 
     // var localUrl = localSettings.urls.urlApplicationPath;
     // $scope.appVersion = window.appVersion + window.branchVersion;
