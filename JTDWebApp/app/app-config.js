@@ -35,7 +35,7 @@ export function blockUIConfig(blockUiConfig) {
     };
 };
 
-export function Interceptor($httpProvider, jquery) {
+export function Interceptor($httpProvider) {
     $httpProvider.interceptors.push(() => {
         return {
             response: (data) => {
@@ -51,6 +51,24 @@ export function Interceptor($httpProvider, jquery) {
                 });
                 //window.$('#containerAll').preloader();
                 config.headers.token = "JKOHFSUIOFHIOASFNOPSM";
+                return config;
+            },
+            responseError: (config) => {
+                console.log(config);
+                window.EasyLoading.hide();
+                window.x0popup({
+                    type: 'info',
+                    html: false,
+                    overlay: true,
+                    theme: 'default',
+                    title: config.data.Title,
+                    text: config.data.Message,
+                    autoClose: 5000,
+                    animation: true,
+                    animationType: 'fadeIn',
+                    buttons: null,
+                    overlayAnimation: true,
+                });
                 return config;
             }
         }

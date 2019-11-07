@@ -1,107 +1,142 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[1],{
 
-/***/ "./app/modules/teste/teste.component.js":
-/*!**********************************************!*\
-  !*** ./app/modules/teste/teste.component.js ***!
-  \**********************************************/
-/*! exports provided: testeComponent */
+/***/ "./app/modules/guest/guest-list.component.js":
+/*!***************************************************!*\
+  !*** ./app/modules/guest/guest-list.component.js ***!
+  \***************************************************/
+/*! exports provided: guestListComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "testeComponent", function() { return testeComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guestListComponent", function() { return guestListComponent; });
 /* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 /* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(angular__WEBPACK_IMPORTED_MODULE_0__);
+﻿
 
+const guestListComponent = {
+    template: __webpack_require__(/*! ./guest-list.html */ "./app/modules/guest/guest-list.html"),
+    controller: ['$scope', 'guestServices', ($scope, guestServices) => {
+        $scope.hello = "Hello";
 
-const testeComponent = {
-	template: __webpack_require__(/*! ./teste.html */ "./app/modules/teste/teste.html"),
-	controller: ['$scope','$uiRouter', function ($scope, $uiRouter){
-		$scope.hello = "Hello";
-		var $deepStateRedirect = $uiRouter._plugins["deep-state-redirect"];
-		console.log($scope);
-	}]
+        // console.log(guestServices);
+
+        $scope.teste = (t) => alert("Editando usuario: " + t);
+
+        guestServices.getGuests()
+            .success(r => $scope.guests = r);
+    }]
 };
 
 /***/ }),
 
-/***/ "./app/modules/teste/teste.html":
-/*!**************************************!*\
-  !*** ./app/modules/teste/teste.html ***!
-  \**************************************/
+/***/ "./app/modules/guest/guest-list.html":
+/*!*******************************************!*\
+  !*** ./app/modules/guest/guest-list.html ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\t<body>\r\n\t\t<div class=\"card\">\r\n\t\t\t\r\n\t  <div class=\"card-body\">\r\n\t  \t<div class=\"card-title\">\r\n\t    <h5> {{hello}} Mundo!</h5>\r\n\t\t\t\t\r\n\t\t\t</div>\r\n\t<div> O</div>\r\n\t  </div>\r\n\t</div>\r\n\t</body>";
+module.exports = "<h3>Clientes</h3>\r\n<div class=\"table-responsive\">\r\n    <table class=\"table table-striped table-sm\">\r\n        <thead>\r\n            <tr>\r\n                <th>#</th>\r\n                <th>Nome</th>\r\n                <th>CPF</th>\r\n                <th>Cidade</th>\r\n                <th>Contato</th>\r\n                <th>Telefone</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr ng-if=\"guests.length > 0\" ng-repeat=\"guest in guests\">\r\n                <td ng-click=\"teste(guest.Name)\"><a href=\"#guests\">{{guest.Id}}</a></td>\r\n                <td>{{guest.Name}}</td>\r\n                <td>{{guest.Cpf}}</td>\r\n                <td>{{guest.City}}</td>\r\n                <td>{{guest.ContactName}}</td>\r\n                <td>{{guest.Phone}}</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-center\" colspan=\"6\">Não existem dados...</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>";
 
 /***/ }),
 
-/***/ "./app/modules/teste/teste.module.js":
+/***/ "./app/modules/guest/guest.module.js":
 /*!*******************************************!*\
-  !*** ./app/modules/teste/teste.module.js ***!
+  !*** ./app/modules/guest/guest.module.js ***!
   \*******************************************/
-/*! exports provided: TESTE_MODULE */
+/*! exports provided: GUEST_MODULE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TESTE_MODULE", function() { return TESTE_MODULE; });
-/* harmony import */ var _teste_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./teste.component */ "./app/modules/teste/teste.component.js");
-/* harmony import */ var _teste_states__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./teste.states */ "./app/modules/teste/teste.states.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GUEST_MODULE", function() { return GUEST_MODULE; });
+/* harmony import */ var _guest_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./guest-list.component */ "./app/modules/guest/guest-list.component.js");
+/* harmony import */ var _guest_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./guest.services */ "./app/modules/guest/guest.services.js");
+/* harmony import */ var _guest_states__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./guest.states */ "./app/modules/guest/guest.states.js");
+﻿
 
-//import { nightAuditService } from "./nightAudit.service";
 
 
-const TESTE_MODULE = angular.module('teste.module', []);
 
-TESTE_MODULE.component('testeComponent', _teste_component__WEBPACK_IMPORTED_MODULE_0__["testeComponent"]);
 
-TESTE_MODULE.config(['$uiRouterProvider', function ($uiRouterProvider) {    
+const GUEST_MODULE = angular.module('guest.module', []);
+
+GUEST_MODULE.service('guestServices', _guest_services__WEBPACK_IMPORTED_MODULE_1__["guestServices"]);
+
+GUEST_MODULE.component('guestListComponent', _guest_list_component__WEBPACK_IMPORTED_MODULE_0__["guestListComponent"]);
+
+GUEST_MODULE.config(['$uiRouterProvider', function ($uiRouterProvider) {
     var stateRegistry = $uiRouterProvider.stateRegistry;
-    stateRegistry.register(_teste_states__WEBPACK_IMPORTED_MODULE_1__["testeState"]);
-    stateRegistry.register(_teste_states__WEBPACK_IMPORTED_MODULE_1__["testesTState"]);
+    stateRegistry.register(_guest_states__WEBPACK_IMPORTED_MODULE_2__["guestState"]);
+    stateRegistry.register(_guest_states__WEBPACK_IMPORTED_MODULE_2__["guestListState"]);
 }]);
 
 /***/ }),
 
-/***/ "./app/modules/teste/teste.states.js":
-/*!*******************************************!*\
-  !*** ./app/modules/teste/teste.states.js ***!
-  \*******************************************/
-/*! exports provided: testeState, testesTState */
+/***/ "./app/modules/guest/guest.services.js":
+/*!*********************************************!*\
+  !*** ./app/modules/guest/guest.services.js ***!
+  \*********************************************/
+/*! exports provided: guestServices, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "testeState", function() { return testeState; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "testesTState", function() { return testesTState; });
-const testeState = {
-	parent:'app',
-	name: 'testes',
-	url: '/testes',
-	dsr: true,
-	sticky: true,
-	views: {
-		'viewTeste':{
-			template: '<div ui-view="viewT"></div>'
-		}
-	},
-	deepStateRedirect: {
-        default: { state: 'testes.te' }
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guestServices", function() { return guestServices; });
+﻿guestServices.$inject = ['$http'];
+
+function guestServices($http) {
+
+    var api = window.location.origin + window.location.pathname + 'api/';
+    var service = {};
+
+    service.getGuests = () => $http.get(api + 'guest/');
+
+    return service;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (angular.module('services.guestServices', [])
+    .service('guestServices', guestServices).name);
+
+
+/***/ }),
+
+/***/ "./app/modules/guest/guest.states.js":
+/*!*******************************************!*\
+  !*** ./app/modules/guest/guest.states.js ***!
+  \*******************************************/
+/*! exports provided: guestState, guestListState */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guestState", function() { return guestState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guestListState", function() { return guestListState; });
+﻿const guestState = {
+    parent: 'app',
+    name: 'guests',
+    url: '/guests',
+    dsr: true,
+    sticky: true,
+    views: {
+        'viewGuest': {
+            template: '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>'
+        }
+    },
+    deepStateRedirect: {
+        default: { state: 'guests.list' }
     }
 };
 
-const testesTState = {
-	name: 'testes.te',
-	views: {
-		'viewT': {
-			component: 'testeComponent'
-		}
-	}
+const guestListState = {
+    name: 'guests.list',
+    views: {
+        'viewList': {
+            component: 'guestListComponent'
+        }
+    }
 };
-
-
-
 
 /***/ })
 

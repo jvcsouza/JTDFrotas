@@ -32,7 +32,7 @@ function mainControler($scope, $injector, $uiRouter) {
 
     $scope.h = 'HELLO WORLD';
 
-    console.log($scope);
+    //console.log($scope);
 
     // var localUrl = localSettings.urls.urlApplicationPath;
     // $scope.appVersion = window.appVersion + window.branchVersion;

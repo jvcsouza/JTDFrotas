@@ -14,12 +14,7 @@ namespace JTDWebApp.App_Start
         {
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
-            //RegisterServices(container);
-            container.Register<JTDContext>(() => new JTDContext(), Lifestyle.Scoped);
-
-            container.Register<IPersonService, PersonBusiness>();
-
-            container.Register<ICompanyService, CompanyBusiness>();
+            RegisterServices(container);
             container.RegisterWebApiControllers(config);
             GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
             container.Verify();
@@ -27,11 +22,12 @@ namespace JTDWebApp.App_Start
 
         private static void RegisterServices(Container container)
         {
-            container.Register<JTDContext>(() => new JTDContext(), Lifestyle.Scoped);
+            container.Register<JTDContext>(() => new JTDContext(),Lifestyle.Scoped);
 
             container.Register<IPersonService, PersonBusiness>();
 
             container.Register<ICompanyService, CompanyBusiness>();
+            container.Register<IGuestService, GuestBusiness>();
         }
     }
 }

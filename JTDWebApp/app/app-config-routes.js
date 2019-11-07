@@ -73,3 +73,18 @@ export const testeFutureState = {
         return import('./modules/teste/teste.module').then(mod => $ocLazyLoad.load(mod.TESTE_MODULE));
     }
 };
+
+export const guestFutureState = {
+    parent: 'app',
+    name: 'guests.**',
+    url: '/guests',
+    views: {
+        'viewGuest': {
+            template: '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>'
+        }
+    },
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return import('./modules/guest/guest.module').then(mod => $ocLazyLoad.load(mod.GUEST_MODULE));
+    }
+}

@@ -18,7 +18,9 @@ namespace JTDWebApp
             var angularScripts = new ScriptBundle("~/bundles/angular-main-scripts").Include(
                 "~/_bundles/vendors~oneapp.*",
                 "~/_bundles/oneapp.*",
+                "~/node_modules/angular-material/angular-material.js",
                 "~/scripts/stickyStates.js",
+                "~/scripts/x0popup.js",
                 "~/scripts/easy-loading.min.js");
 		
 	        bundles.Add(angularScripts);
@@ -37,7 +39,9 @@ namespace JTDWebApp
             //          "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      //"~/Content/bootstrap.css",
+                      "~/Content/x0popup.css",
+                      "~/node_modules/angular-material/angular-material.css",
+                      "~/Content/x0popup.default.css",
                       "~/Content/easy-loading.min.css"));
                       //"~/Content/site.css"));
         }

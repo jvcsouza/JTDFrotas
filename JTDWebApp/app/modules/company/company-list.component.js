@@ -9,8 +9,8 @@ export const companyListComponent = {
 
 		$scope.teste = (t) => alert("Editando usuario: " + t);
 
-		companyServices.getCompanies()
-		.success(r => $scope.companies = r)
-		.error(e => console.log(e));
+        companyServices.getCompanies()
+            .success(r => $scope.companies = r);
+            //.error(e => { throw e; });
 	}]
 };
