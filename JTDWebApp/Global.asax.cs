@@ -18,6 +18,7 @@ namespace JTDWebApp
         {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configure(FilterConfig.Register);
             GlobalConfiguration.Configure(IoCConfig.Registrar);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

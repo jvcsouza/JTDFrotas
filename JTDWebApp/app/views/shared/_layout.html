@@ -6,60 +6,65 @@
       rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="./app/assets/estilos.css">
 <body>
-	<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#home">JTDFrotas</a>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">Deslogar</a>
-    </li>
-  </ul>
-</nav>
-	<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky pl-2">
-          <ul class="nav flex-column">
-              <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#home">
-                  <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
-                      <i class="material-icons m-2">home</i>
-                      <p class="align-self-center m-0">Dashboard</p>
-                  </li>
-              </a>
-              <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#testes">
-                  <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
-                      <i class="material-icons m-2">traffic</i>
-                      <p class="align-self-center m-0">Viagens</p>
-                  </li>
-              </a>
-              <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#companies">
-                  <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
-                      <i class="material-icons m-2">business</i>
-                      <p class="align-self-center m-0">Companies</p>
-                  </li>
-              </a>
-              <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#guests">
-                  <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
-                      <i class="material-icons m-2">supervisor_account</i>
-                      <p class="align-self-center m-0">Guests</p>
-                  </li>
-              </a>
-              <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#companies">
-                  <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
-                      <i class="material-icons m-2">local_printshop</i>
-                      <p class="align-self-center m-0">Relatorios</p>
-                  </li>
-              </a>
-          </ul>
-      </div>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#home">JTDFrotas</a>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Deslogar</a>
+            </li>
+        </ul>
     </nav>
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 mt-4 px-4">
-    	<div id="viewTeste" ui-view="viewTeste"></div>
-    	<div id="viewCompany" ui-view="viewCompany"></div>
-		<div id="viewDash" ui-view="viewDash"></div>
-		<div id="viewGuest" ui-view="viewGuest"></div>
-    </main>
-  </div>
-</div>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky pl-2">
+                    <ul class="nav flex-column">
+                        <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#home">
+                            <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                                <i class="material-icons m-2">home</i>
+                                <p class="align-self-center m-0">Dashboard</p>
+                            </li>
+                        </a>
+                        <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#travels">
+                            <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                                <i class="material-icons m-2">traffic</i>
+                                <p class="align-self-center m-0">Viagens</p>
+                            </li>
+                        </a>
+                        <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#companies">
+                            <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                                <i class="material-icons m-2">business</i>
+                                <p class="align-self-center m-0">Companias</p>
+                            </li>
+                        </a>
+                        <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#guests">
+                            <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                                <i class="material-icons m-2">supervisor_account</i>
+                                <p class="align-self-center m-0">Clientes</p>
+                            </li>
+                        </a>
+                        <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#companies">
+                            <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                                <i class="material-icons m-2">local_printshop</i>
+                                <p class="align-self-center m-0">Relatorios</p>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 mt-4 ml-0 px-4">
+                <div class="card w-100 pmd-z-depth">
+                    <div class="card-body p-5">
+                        <div id="viewTeste" ui-view="viewTeste"></div>
+                        <div id="viewCompany" ui-view="viewCompany"></div>
+                        <div id="viewDash" ui-view="viewDash"></div>
+                        <div id="viewGuest" ui-view="viewGuest"></div>
+                        <div id="viewTravel" ui-view="viewTravel"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
 </body>
 </html>

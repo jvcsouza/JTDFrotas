@@ -12,16 +12,19 @@ import {
     , testeFutureState
     , companyFutureState
     , guestFutureState
+    , travelFutureState
 } from "./app-config-routes";
 
 require("angular-block-ui");
+//require("$q");
 require("jquery");
 
 var jtdFrotas = angular.module('jtdFrotas', ['blockUI', ocLazyLoad, uiRouter]);
 
-import { blockUIConfig, Interceptor } from "./app-config";
+import { blockUIConfig, Interceptor, exceptionConfig  } from "./app-config";
 jtdFrotas.config(blockUIConfig);
 jtdFrotas.config(['$httpProvider', Interceptor]);
+jtdFrotas.config(['$provide', exceptionConfig]);
 
 jtdFrotas.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $locationProvider) => {
     $uiRouter.plugin(DSRPlugin);
@@ -38,5 +41,7 @@ jtdFrotas.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $locatio
     $stateRegistry.register(testeFutureState);
     $stateRegistry.register(companyFutureState);
     $stateRegistry.register(guestFutureState);
+    $stateRegistry.register(travelFutureState);
 }]);
 jtdFrotas.controller("mainController", mainControler);
+window.jtd = jtdFrotas;

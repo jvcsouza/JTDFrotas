@@ -19,8 +19,11 @@ namespace JTDWebApp
                 "~/_bundles/vendors~oneapp.*",
                 "~/_bundles/oneapp.*",
                 "~/node_modules/angular-material/angular-material.js",
+                "~/node_modules/sweetalert2/dist/sweetalert2.all.min.js",
+                "~/node_modules/propellerkit/dist/js/bootstrap.min.js",
+                "~/node_modules/propellerkit/dist/js/propeller.min.js",
                 "~/scripts/stickyStates.js",
-                "~/scripts/x0popup.js",
+                //"~/scripts/x0popup.js",
                 "~/scripts/easy-loading.min.js");
 		
 	        bundles.Add(angularScripts);
@@ -39,8 +42,11 @@ namespace JTDWebApp
             //          "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/x0popup.css",
+                      //"~/Content/x0popup.css",
+                      //"~/node_modules/propellerkit/dist/fonts/roboto/Roboto-Regular-webfont.ttf",
+                      "~/node_modules/sweetalert2/dist/sweetalert2.min.css",
                       "~/node_modules/angular-material/angular-material.css",
+                      "~/node_modules/propellerkit/dist/css/propeller.min.css",
                       "~/Content/x0popup.default.css",
                       "~/Content/easy-loading.min.css"));
                       //"~/Content/site.css"));

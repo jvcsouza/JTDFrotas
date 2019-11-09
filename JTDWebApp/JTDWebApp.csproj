@@ -96,6 +96,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
     </Reference>
@@ -263,9 +266,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
       <Private>True</Private>
@@ -300,6 +300,7 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IntegrationsController.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -317,6 +318,17 @@
     <Content Include="app\application.module.js" />
     <Content Include="app\assets\bootstrap.min.css" />
     <Content Include="app\assets\estilos.css" />
+    <Content Include="app\modules\guest\guest-list.component.js" />
+    <Content Include="app\modules\guest\guest-list.html" />
+    <Content Include="app\modules\guest\guest.module.js" />
+    <Content Include="app\modules\guest\guest.services.js" />
+    <Content Include="app\modules\guest\guest.states.js" />
+    <Content Include="app\modules\travel\travel-detail.component.js" />
+    <Content Include="app\modules\travel\travel-detail.html" />
+    <Content Include="app\modules\travel\travel-list.html" />
+    <Content Include="app\modules\travel\travel.module.js" />
+    <Content Include="app\modules\travel\travel.services.js" />
+    <Content Include="app\modules\travel\travel.states.js" />
     <Content Include="Content\easy-loading.min.css" />
     <Content Include="Content\preloader.css" />
     <Content Include="Content\x0popup.css" />
@@ -401,6 +413,7 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="app\modules\travel\travel-list.component.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
@@ -1181,6 +1194,7 @@
     <Folder Include="app\directives\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\Company\" />
+    <Folder Include="Views\Integrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1196,6 +1210,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\APICnpj\API.csproj">
+      <Project>{B5575FCC-1FA5-4F6E-940C-77B597F9EDF2}</Project>
+      <Name>API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JTDBusiness\JTDBusiness.csproj">
       <Project>{BD67539A-293D-40F9-B5DA-2E178E01C767}</Project>
       <Name>JTDBusiness</Name>

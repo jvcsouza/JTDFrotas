@@ -15,18 +15,53 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const companyListComponent = {
-	template: __webpack_require__(/*! ./company-list.html */ "./app/modules/company/company-list.html"),
-	controller: ['$scope','companyServices', ($scope, companyServices) => {
-		$scope.hello = "Hello";
+    template: __webpack_require__(/*! ./company-list.html */ "./app/modules/company/company-list.html"),
+    controller: ['$scope', 'companyServices', 'blockUI', ($scope, companyServices, $blockUI) => {
 
-		// console.log(companyServices);
+        $scope.companies = [];
 
-		$scope.teste = (t) => alert("Editando usuario: " + t);
+        $scope.openModalCnpj = () => {
+            Swal.fire({
+                title: 'Informe o CNPJ da empresa abaixo: ',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                customClass: {
+                    input: 'ml-5 mr-5 w-75'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Buscar',
+                showLoaderOnConfirm: true,
+                preConfirm: (cnpj) =>
+                    companyServices.searchCnpj(cnpj).then(rs => {
+                        if (!rs)
+                            throw rs;
+                        return rs;
+                    }),
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.value.status === 200) {
+                    Swal.fire({
+                        title: `CNPJ Encontrado!`,
+                        text: `${result.value.data.FantasyName || result.value.data.Person.Name}`,
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Esta errado, quero cancelar.',
+                        confirmButtonText: 'Esta correto, pode salvar.'
+                    });
+                }
+            })
+        }
+
+        $scope.teste = (t) => alert("Editando usuario: " + t);
 
         companyServices.getCompanies()
-            .success(r => $scope.companies = r);
-            //.error(e => { throw e; });
-	}]
+            .success(r => $scope.companies = r)
+            .error(e => { throw e; });
+    }]
 };
 
 /***/ }),
@@ -38,7 +73,7 @@ const companyListComponent = {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Companias</h3>\r\n<div class=\"table-responsive\">\r\n    <table class=\"table table-striped table-sm\">\r\n        <thead>\r\n            <tr>\r\n                <th>#</th>\r\n                <th>Nome</th>\r\n                <th>Cidade</th>\r\n                <th>Endereço</th>\r\n                <th>Número</th>\r\n                <th>Ativo</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr ng-if=\"companies.length > 0\" ng-repeat=\"com in companies\">\r\n                <td ng-click=\"teste(com.Name)\"><a href=\"#companies\">{{com.Id}}</a></td>\r\n                <td>{{com.Name}}</td>\r\n                <td>{{com.Cities}}</td>\r\n                <td>{{com.Address}}</td>\r\n                <td>{{com.Number}}</td>\r\n                <td><input type=\"checkbox\" ng-disabled=true ng-checked=\"com.Act\"></td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-center\" colspan=\"6\">Não existem dados...</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>";
+module.exports = "<div class=\"d-flex justify-content-between row flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">\r\n    <h3 class=\"col-sm-8\">Companias</h3>\r\n    <div class=\"btn-toolbar col-sm-4\">\r\n        <div class=\"btn-group btn-block\">\r\n            <button type=\"button\"\r\n                    class=\"\r\n                       btn pmd-ripple-effect pmd-btn-outline btn-sm pmd-btn-raised\r\n                       pmd-ripple-effect btn-default\"\r\n                    ng-click=\"openModalCnpj()\">\r\n                Nova c/ CNPJ\r\n            </button>\r\n            <button type=\"button\"\r\n                    class=\"\r\n                       btn pmd-ripple-effect pmd-btn-outline btn-sm pmd-btn-raised\r\n                       pmd-ripple-effect btn-default\"\r\n                    ng-click=\"openModalEdit()\">\r\n                Nova manual\r\n            </button>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"table-responsive\">\r\n    <table class=\"table table-hover table-striped table-sm table-bordered\">\r\n        <thead class=\"thead-dark\">\r\n            <tr class=\"text-center\">\r\n                <th>#</th>\r\n                <th>Nome</th>\r\n                <th>CNPJ</th>\r\n                <th>Cidade</th>\r\n                <th>Telefone</th>\r\n                <th>Ativo</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr ng-if=\"companies.length > 0\" ng-repeat=\"com in companies\" class=\"text-center\">\r\n                <td ng-click=\"teste(com.FantasyName)\"><a href=\"#companies\">{{com.Id}}</a></td>\r\n                <td>{{com.FantasyName}}</td>\r\n                <td>{{com.Cnpj}}</td>\r\n                <td>{{com.City}}</td>\r\n                <td>{{com.Phone}}</td>\r\n                <td><input type=\"checkbox\" ng-disabled=true ng-checked=\"com.Act\"></td>\r\n            </tr>\r\n            <tr>\r\n                <td ng-if=\"companies.length == 0\" class=\"text-center\" colspan=\"6\">Não existem dados...</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>\r\n";
 
 /***/ }),
 
@@ -93,6 +128,11 @@ function companyServices($http) {
     var service = {};
 
     service.getCompanies = () => $http.get(api + 'Company/');
+
+    service.searchCnpj = (cnpj) => {
+        var cnpjClean = cnpj.replace(/[\.\-//]?/g, '');
+        return $http.get(api + 'integrations/cnpj/' + cnpjClean);
+    }
 
     return service;
 }
