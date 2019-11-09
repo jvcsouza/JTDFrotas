@@ -1,6 +1,4 @@
-function viewCrudTemplate() {
-    return '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>';
-};
+var viewCrudTemplate = '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>';
 
 function localUrl() {
 
@@ -86,5 +84,20 @@ export const guestFutureState = {
     lazyLoad: (transition) => {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
         return import('./modules/guest/guest.module').then(mod => $ocLazyLoad.load(mod.GUEST_MODULE));
+    }
+}
+
+export const travelFutureState = {
+    parent: 'app',
+    name: 'travels.**',
+    url: '/travels',
+    views: {
+        'viewTravel': {
+            template: viewCrudTemplate
+        }
+    },
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return import('./modules/travel/travel.module').then(mod => $ocLazyLoad.load(mod.TRAVEL_MODULE));
     }
 }

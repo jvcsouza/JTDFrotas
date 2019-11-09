@@ -23,14 +23,15 @@ namespace JTDLib
         public DbSet<VehiclesType> VehiclesTypes { get; set; }
         public DbSet<Travel> Travels { get; set; }
 
-        public JTDContext()
+        public JTDContext(): base()
         {
-
+                
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(local)\\sqlexpress;Database=JTDFROTAS;Trusted_Connection=true");
+            //optionsBuilder.UseSqlServer("Server=(local)\\sqlexpress;Database=JTDFROTAS;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer("Server=JOÃOSOUZA\\SQLEXPRESS;Database=JTDFROTAS;User ID=sa;Password=REMOVED");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

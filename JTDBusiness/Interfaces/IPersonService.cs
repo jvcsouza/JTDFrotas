@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace JTDBusiness
+namespace JTDBusiness.Interfaces
 {
     public interface IPersonService
     {

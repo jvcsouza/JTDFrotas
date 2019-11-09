@@ -7,6 +7,11 @@ export function companyServices($http) {
 
     service.getCompanies = () => $http.get(api + 'Company/');
 
+    service.searchCnpj = (cnpj) => {
+        var cnpjClean = cnpj.replace(/[\.\-//]?/g, '');
+        return $http.get(api + 'integrations/cnpj/' + cnpjClean);
+    }
+
     return service;
 }
 

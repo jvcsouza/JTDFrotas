@@ -8,9 +8,10 @@ using JTDLib;
 namespace JTDLib.Migrations
 {
     [DbContext(typeof(JTDContext))]
-    partial class JTDContextModelSnapshot : ModelSnapshot
+    [Migration("20191107014109_addIsMainToPhones")]
+    partial class addIsMainToPhones
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

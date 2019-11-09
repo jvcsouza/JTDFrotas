@@ -250,7 +250,7 @@ jtdFrotas.config(['$compileProvider', function ($compileProvider) {
 /*!**********************************!*\
   !*** ./app/app-config-routes.js ***!
   \**********************************/
-/*! exports provided: layout, home, companyFutureState, testeFutureState, guestFutureState */
+/*! exports provided: layout, home, companyFutureState, testeFutureState, guestFutureState, travelFutureState */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -260,9 +260,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "companyFutureState", function() { return companyFutureState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "testeFutureState", function() { return testeFutureState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guestFutureState", function() { return guestFutureState; });
-function viewCrudTemplate() {
-    return '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>';
-};
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "travelFutureState", function() { return travelFutureState; });
+var viewCrudTemplate = '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>';
 
 function localUrl() {
 
@@ -351,26 +350,42 @@ const guestFutureState = {
     }
 }
 
+const travelFutureState = {
+    parent: 'app',
+    name: 'travels.**',
+    url: '/travels',
+    views: {
+        'viewTravel': {
+            template: viewCrudTemplate
+        }
+    },
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./modules/travel/travel.module */ "./app/modules/travel/travel.module.js")).then(mod => $ocLazyLoad.load(mod.TRAVEL_MODULE));
+    }
+}
+
 /***/ }),
 
 /***/ "./app/app-config.js":
 /*!***************************!*\
   !*** ./app/app-config.js ***!
   \***************************/
-/*! exports provided: setHtml5Mode, blockUIConfig, Interceptor */
+/*! exports provided: setHtml5Mode, blockUIConfig, exceptionConfig, Interceptor */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setHtml5Mode", function() { return setHtml5Mode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blockUIConfig", function() { return blockUIConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exceptionConfig", function() { return exceptionConfig; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Interceptor", function() { return Interceptor; });
 const setHtml5Mode = ($locationProvider) => $locationProvider.html5Mode(true);
 
 blockUIConfig.$inject = ['blockUIConfig'];
 function blockUIConfig(blockUiConfig) {
     // Change the default overlay message
-    blockUiConfig.message = 'alo';
+    blockUiConfig.message = '';
 
     // Change the default delay to 100ms before the blocking is visible
     blockUiConfig.delay = 500;
@@ -402,41 +417,52 @@ function blockUIConfig(blockUiConfig) {
     };
 };
 
+exceptionConfig.$inject = ['$provide'];
+function exceptionConfig($provide) {
+    window.t = $provide;
+    $provide.decorator('$exceptionHandler', ['$log', '$delegate', '$injector', function ($log, $delegate, $injector) {
+        return function (exception, cause) {
+            $log.debug('Default exception handler.');
+            $delegate(exception, cause);
+        }
+    }]);
+};
+
+Interceptor.$inject = ['$httpProvider'];
 function Interceptor($httpProvider) {
+    $httpProvider.useApplyAsync(true);
     $httpProvider.interceptors.push(() => {
         return {
-            response: (data) => {
+            'response': (data) => {
                 window.EasyLoading.hide();
                 return data;
-
             },
-            request: (config) => {
+            'request': (config) => {
                 window.EasyLoading.show({
                     text: "Loading...",
                     type: window.EasyLoading.TYPE.BALL_SCALE_MULTIPLE,
                     button: null
                 });
-                //window.$('#containerAll').preloader();
                 config.headers.token = "JKOHFSUIOFHIOASFNOPSM";
                 return config;
             },
-            responseError: (config) => {
-                console.log(config);
+            'requestError': (err) => {
                 window.EasyLoading.hide();
-                window.x0popup({
-                    type: 'info',
-                    html: false,
-                    overlay: true,
-                    theme: 'default',
-                    title: config.data.Title,
-                    text: config.data.Message,
-                    autoClose: 5000,
-                    animation: true,
-                    animationType: 'fadeIn',
-                    buttons: null,
-                    overlayAnimation: true,
+                window.Swal.fire({
+                    title: 'Oops... Algo deu errado!',
+                    text: err.data.Message,
+                    icon: 'error',
                 });
-                return config;
+                throw err;
+            },
+            'responseError': (err) => {
+                window.EasyLoading.hide();
+                window.Swal.fire({
+                    title: 'Oops... Algo deu errado!',
+                    text: err.data.Message,
+                    icon: 'error',
+                });
+                throw err;
             }
         }
     });
@@ -475,6 +501,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 __webpack_require__(/*! angular-block-ui */ "./node_modules/angular-block-ui/dist/angular-block-ui.js");
+//require("$q");
 __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 var jtdFrotas = angular__WEBPACK_IMPORTED_MODULE_0__["module"]('jtdFrotas', ['blockUI', oclazyload__WEBPACK_IMPORTED_MODULE_4___default.a, _uirouter_angularjs__WEBPACK_IMPORTED_MODULE_1__["default"]]);
@@ -482,6 +509,7 @@ var jtdFrotas = angular__WEBPACK_IMPORTED_MODULE_0__["module"]('jtdFrotas', ['bl
 
 jtdFrotas.config(_app_config__WEBPACK_IMPORTED_MODULE_7__["blockUIConfig"]);
 jtdFrotas.config(['$httpProvider', _app_config__WEBPACK_IMPORTED_MODULE_7__["Interceptor"]]);
+jtdFrotas.config(['$provide', _app_config__WEBPACK_IMPORTED_MODULE_7__["exceptionConfig"]]);
 
 jtdFrotas.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $locationProvider) => {
     $uiRouter.plugin(_uirouter_dsr__WEBPACK_IMPORTED_MODULE_5__["DSRPlugin"]);
@@ -498,8 +526,10 @@ jtdFrotas.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $locatio
     $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["testeFutureState"]);
     $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["companyFutureState"]);
     $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["guestFutureState"]);
+    $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["travelFutureState"]);
 }]);
 jtdFrotas.controller("mainController", _modules_main_mainController__WEBPACK_IMPORTED_MODULE_3__["default"]);
+window.jtd = jtdFrotas;
 
 /***/ }),
 

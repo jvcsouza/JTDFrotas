@@ -10,6 +10,7 @@ namespace JTDWebApp
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new ExceptionFilter());
         }
         public static void Register(HttpConfiguration config)
         {

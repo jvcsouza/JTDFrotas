@@ -7,10 +7,11 @@ using System.Net.Http.Formatting;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Filters;
+using System.Web.Mvc;
 
 namespace JTDWebApp.Filters
 {
-    public class ExceptionFilter : ExceptionFilterAttribute
+    public class ExceptionFilter : ExceptionFilterAttribute, System.Web.Mvc.IExceptionFilter
     {
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
@@ -20,6 +21,19 @@ namespace JTDWebApp.Filters
                 {
                     Title = "Validação",
                     Message = actionExecutedContext.Exception.Message
+                },
+                new JsonMediaTypeFormatter()),
+            });
+        }
+
+        public void OnException(ExceptionContext filterContext)
+        {
+            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed)
+            {
+                Content = new ObjectContent<ResponseMessage>(new ResponseMessage
+                {
+                    Title = "Validação",
+                    Message = filterContext.Exception.Message
                 },
                 new JsonMediaTypeFormatter()),
             });
