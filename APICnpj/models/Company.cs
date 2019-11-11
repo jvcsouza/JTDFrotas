@@ -73,6 +73,12 @@ namespace APICnpj.models
         [JsonProperty("status")]
         public string Status { get; set; }
 
+        [JsonIgnore]
+        public bool IsError => !string.IsNullOrEmpty(Message);
+
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
         [JsonProperty("tipo")]
         public string Tipo { get; set; }
 

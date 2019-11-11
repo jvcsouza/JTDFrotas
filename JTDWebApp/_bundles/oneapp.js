@@ -299,7 +299,7 @@ const home = {
     },
     lazyLoad: function (transition) {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./modules/main/main.module */ "./app/modules/main/main.module.js")).then(mod => $ocLazyLoad.load(mod.MAIN_MODULE));
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./modules/main/main.module */ "./app/modules/main/main.module.js")).then(mod => $ocLazyLoad.load(mod.MAIN_MODULE));
     }
 };
 
@@ -315,7 +315,7 @@ const companyFutureState = {
     },
     lazyLoad: function (transition) {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./modules/company/company.module */ "./app/modules/company/company.module.js")).then(mod => $ocLazyLoad.load(mod.COMPANY_MODULE));
+        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./modules/company/company.module */ "./app/modules/company/company.module.js")).then(mod => $ocLazyLoad.load(mod.COMPANY_MODULE));
     }
 };
 
@@ -331,7 +331,7 @@ const testeFutureState = {
     },
     lazyLoad: function (transition) {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./modules/teste/teste.module */ "./app/modules/teste/teste.module.js")).then(mod => $ocLazyLoad.load(mod.TESTE_MODULE));
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./modules/teste/teste.module */ "./app/modules/teste/teste.module.js")).then(mod => $ocLazyLoad.load(mod.TESTE_MODULE));
     }
 };
 
@@ -361,7 +361,7 @@ const travelFutureState = {
     },
     lazyLoad: (transition) => {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./modules/travel/travel.module */ "./app/modules/travel/travel.module.js")).then(mod => $ocLazyLoad.load(mod.TRAVEL_MODULE));
+        return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./modules/travel/travel.module */ "./app/modules/travel/travel.module.js")).then(mod => $ocLazyLoad.load(mod.TRAVEL_MODULE));
     }
 }
 
@@ -450,7 +450,7 @@ function Interceptor($httpProvider) {
                 window.EasyLoading.hide();
                 window.Swal.fire({
                     title: 'Oops... Algo deu errado!',
-                    text: err.data.Message,
+                    html: err.data.Message,
                     icon: 'error',
                 });
                 throw err;
@@ -459,7 +459,7 @@ function Interceptor($httpProvider) {
                 window.EasyLoading.hide();
                 window.Swal.fire({
                     title: 'Oops... Algo deu errado!',
-                    text: err.data.Message,
+                    html: err.data.Message,
                     icon: 'error',
                 });
                 throw err;
@@ -501,10 +501,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 __webpack_require__(/*! angular-block-ui */ "./node_modules/angular-block-ui/dist/angular-block-ui.js");
-//require("$q");
+__webpack_require__(/*! angular-input-masks/br */ "./node_modules/angular-input-masks/br.js")
 __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-var jtdFrotas = angular__WEBPACK_IMPORTED_MODULE_0__["module"]('jtdFrotas', ['blockUI', oclazyload__WEBPACK_IMPORTED_MODULE_4___default.a, _uirouter_angularjs__WEBPACK_IMPORTED_MODULE_1__["default"]]);
+var jtdFrotas = angular__WEBPACK_IMPORTED_MODULE_0__["module"]('jtdFrotas', ['blockUI', oclazyload__WEBPACK_IMPORTED_MODULE_4___default.a, _uirouter_angularjs__WEBPACK_IMPORTED_MODULE_1__["default"], 'ui.utils.masks']);
 
 
 jtdFrotas.config(_app_config__WEBPACK_IMPORTED_MODULE_7__["blockUIConfig"]);

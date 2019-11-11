@@ -68,7 +68,7 @@ export function Interceptor($httpProvider) {
                 window.EasyLoading.hide();
                 window.Swal.fire({
                     title: 'Oops... Algo deu errado!',
-                    text: err.data.Message,
+                    html: err.data.Message,
                     icon: 'error',
                 });
                 throw err;
@@ -77,7 +77,7 @@ export function Interceptor($httpProvider) {
                 window.EasyLoading.hide();
                 window.Swal.fire({
                     title: 'Oops... Algo deu errado!',
-                    text: err.data.Message,
+                    html: err.data.Message,
                     icon: 'error',
                 });
                 throw err;
