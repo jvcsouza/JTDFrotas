@@ -27,6 +27,7 @@
     "angular-auto-complete": "^1.7.4",
     "angular-block-ui": "0.2.2",
     "angular-dynamic-locale": "^0.1.37",
+    "angular-input-masks": "^4.4.1",
     "angular-local-storage": "0.2.2",
     "angular-route": "1.5.9",
     "angular-sanitize": "1.5.9",

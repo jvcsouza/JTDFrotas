@@ -1,99 +1,203 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[2],{
 
-/***/ "./app/modules/teste/teste.component.js":
-/*!**********************************************!*\
-  !*** ./app/modules/teste/teste.component.js ***!
-  \**********************************************/
-/*! exports provided: testeComponent */
+/***/ "./app/modules/company/company-list.component.js":
+/*!*******************************************************!*\
+  !*** ./app/modules/company/company-list.component.js ***!
+  \*******************************************************/
+/*! exports provided: companyListComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "testeComponent", function() { return testeComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "companyListComponent", function() { return companyListComponent; });
 /* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 /* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(angular__WEBPACK_IMPORTED_MODULE_0__);
 
 
-const testeComponent = {
-	template: __webpack_require__(/*! ./teste.html */ "./app/modules/teste/teste.html"),
-	controller: ['$scope', function ($scope){
-		$scope.hello = "Hello";
-	}]
+const companyListComponent = {
+    template: __webpack_require__(/*! ./company-list.html */ "./app/modules/company/company-list.html"),
+    controller: ['$scope', 'companyServices', 'blockUI', ($scope, companyServices, $blockUI) => {
+
+        $scope.companies = [];
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "bottom",
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+
+        $scope.openModalCnpj = () => {
+            Swal.fire({
+                title: 'Informe o CNPJ da empresa abaixo: ',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                    'ui-br-cnpj-mask': true,
+                    'max-length': 18
+                },
+                customClass: {
+                    input: 'ml-5 mr-5 w-75'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Buscar',
+                showLoaderOnConfirm: true,
+                inputValidator: (value) => {
+                    var cnpj = value.replace(/[\.\-//]?/g, '');
+
+                    if (/[\D]/g.test(cnpj))
+                        return 'O CNPJ deve conter apenas numeros.';
+
+                    if (cnpj.length !== 14)
+                        return 'O valor informado nao e um CNPJ valido.';
+                },
+                preConfirm: (cnpj) =>
+                    companyServices.searchCnpj(cnpj).then(rs => {
+                        if (!rs)
+                            throw rs;
+                        return rs;
+                    }),
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.value.status === 200) {
+                    Swal.fire({
+                        title: `CNPJ Encontrado!`,
+                        text: `${result.value.data.FantasyName || result.value.data.Person.Name}`,
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Esta errado, quero cancelar.',
+                        confirmButtonText: 'Esta correto, pode salvar.',
+                        preConfirm: () => Toast.fire({
+                            icon: "success",
+                            title: "Opera��o Concluida!",
+                        }),
+                    });
+                }
+            })
+        }
+
+        $scope.teste = (t) => alert("Editando usuario: " + t);
+
+        companyServices.getCompanies()
+            .success(r => $scope.companies = r)
+            .error(e => { throw e; });
+    }]
 };
 
 /***/ }),
 
-/***/ "./app/modules/teste/teste.html":
-/*!**************************************!*\
-  !*** ./app/modules/teste/teste.html ***!
-  \**************************************/
+/***/ "./app/modules/company/company-list.html":
+/*!***********************************************!*\
+  !*** ./app/modules/company/company-list.html ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\t<body>\r\n\t\t<div class=\"card\">\r\n\t\t\t\r\n\t  <div class=\"card-body\">\r\n\t  \t<div class=\"card-title\">\r\n\t    <h5> {{hello}} Mundo!</h5>\r\n\t\t\t\t\r\n\t\t\t</div>\r\n\t<div> O</div>\r\n\t  </div>\r\n\t</div>\r\n\t</body>";
+module.exports = "<div class=\"d-flex justify-content-between row flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom\">\r\n    <h3 class=\"col-sm-8\">Companias</h3>\r\n    <div class=\"btn-toolbar col-sm-4\">\r\n        <div class=\"btn-group btn-block\">\r\n            <button type=\"button\"\r\n                    class=\"\r\n                       btn pmd-ripple-effect pmd-btn-outline btn-sm pmd-btn-raised\r\n                       pmd-ripple-effect btn-default\"\r\n                    ng-click=\"openModalCnpj()\">\r\n                Nova c/ CNPJ\r\n            </button>\r\n            <button type=\"button\"\r\n                    class=\"\r\n                       btn pmd-ripple-effect pmd-btn-outline btn-sm pmd-btn-raised\r\n                       pmd-ripple-effect btn-default\"\r\n                    ng-click=\"openModalEdit()\">\r\n                Nova manual\r\n            </button>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"table-responsive\">\r\n    <table class=\"table table-hover table-striped table-sm table-bordered\">\r\n        <thead class=\"thead-dark\">\r\n            <tr class=\"text-center\">\r\n                <th>#</th>\r\n                <th>Nome</th>\r\n                <th>CNPJ</th>\r\n                <th>Cidade</th>\r\n                <th>Telefone</th>\r\n                <th>Ativo</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr ng-if=\"companies.length > 0\" ng-repeat=\"com in companies\" class=\"text-center\">\r\n                <td ng-click=\"teste(com.FantasyName)\"><a href=\"#companies\">{{com.Id}}</a></td>\r\n                <td>{{com.FantasyName}}</td>\r\n                <td>{{com.Cnpj}}</td>\r\n                <td>{{com.City}}</td>\r\n                <td>{{com.Phone}}</td>\r\n                <td><input type=\"checkbox\" ng-disabled=true ng-checked=\"com.Act\"></td>\r\n            </tr>\r\n            <tr>\r\n                <td ng-if=\"companies.length == 0\" class=\"text-center\" colspan=\"6\">Não existem dados...</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>\r\n";
 
 /***/ }),
 
-/***/ "./app/modules/teste/teste.module.js":
-/*!*******************************************!*\
-  !*** ./app/modules/teste/teste.module.js ***!
-  \*******************************************/
-/*! exports provided: TESTE_MODULE */
+/***/ "./app/modules/company/company.module.js":
+/*!***********************************************!*\
+  !*** ./app/modules/company/company.module.js ***!
+  \***********************************************/
+/*! exports provided: COMPANY_MODULE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TESTE_MODULE", function() { return TESTE_MODULE; });
-/* harmony import */ var _teste_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./teste.component */ "./app/modules/teste/teste.component.js");
-/* harmony import */ var _teste_states__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./teste.states */ "./app/modules/teste/teste.states.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COMPANY_MODULE", function() { return COMPANY_MODULE; });
+/* harmony import */ var _company_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./company-list.component */ "./app/modules/company/company-list.component.js");
+/* harmony import */ var _company_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./company.services */ "./app/modules/company/company.services.js");
+/* harmony import */ var _company_states__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./company.states */ "./app/modules/company/company.states.js");
 
-//import { nightAuditService } from "./nightAudit.service";
 
 
-const TESTE_MODULE = angular.module('teste.module', []);
 
-TESTE_MODULE.component('testeComponent', _teste_component__WEBPACK_IMPORTED_MODULE_0__["testeComponent"]);
 
-TESTE_MODULE.config(['$uiRouterProvider', function ($uiRouterProvider) {    
+
+const COMPANY_MODULE = angular.module('company.module', []);
+
+COMPANY_MODULE.service('companyServices',_company_services__WEBPACK_IMPORTED_MODULE_1__["companyServices"]);
+
+COMPANY_MODULE.component('companyListComponent', _company_list_component__WEBPACK_IMPORTED_MODULE_0__["companyListComponent"]);
+
+COMPANY_MODULE.config(['$uiRouterProvider', function ($uiRouterProvider) {    
     var stateRegistry = $uiRouterProvider.stateRegistry;
-    stateRegistry.register(_teste_states__WEBPACK_IMPORTED_MODULE_1__["testeState"]);
-    stateRegistry.register(_teste_states__WEBPACK_IMPORTED_MODULE_1__["testesTState"]);
+    stateRegistry.register(_company_states__WEBPACK_IMPORTED_MODULE_2__["companyState"]);
+    stateRegistry.register(_company_states__WEBPACK_IMPORTED_MODULE_2__["companyListState"]);
 }]);
 
 /***/ }),
 
-/***/ "./app/modules/teste/teste.states.js":
-/*!*******************************************!*\
-  !*** ./app/modules/teste/teste.states.js ***!
-  \*******************************************/
-/*! exports provided: testeState, testesTState */
+/***/ "./app/modules/company/company.services.js":
+/*!*************************************************!*\
+  !*** ./app/modules/company/company.services.js ***!
+  \*************************************************/
+/*! exports provided: companyServices, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "testeState", function() { return testeState; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "testesTState", function() { return testesTState; });
-const testeState = {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "companyServices", function() { return companyServices; });
+companyServices.$inject = ['$http'];
+
+function companyServices($http) {
+
+    var api = window.location.origin + window.location.pathname + 'api/';
+    var service = {};
+
+    service.getCompanies = () => $http.get(api + 'Company/');
+
+    service.searchCnpj = (cnpj) => {
+        var cnpjClean = cnpj.replace(/[\.\-//]?/g, '');
+        return $http.get(api + 'integrations/cnpj/' + cnpjClean);
+    }
+
+    return service;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (angular.module('services.companyServices', [])
+    .service('companyServices', companyServices).name);
+
+
+/***/ }),
+
+/***/ "./app/modules/company/company.states.js":
+/*!***********************************************!*\
+  !*** ./app/modules/company/company.states.js ***!
+  \***********************************************/
+/*! exports provided: companyState, companyListState */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "companyState", function() { return companyState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "companyListState", function() { return companyListState; });
+const companyState = {
 	parent:'app',
-	name: 'testes',
-	url: '/testes',
+	name: 'companies',
+	url: '/companies',
 	dsr: true,
 	sticky: true,
 	views: {
-		'viewTeste':{
-			template: '<div ui-view="viewT"></div>'
+		'viewCompany':{
+			template: '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>'
 		}
 	},
 	deepStateRedirect: {
-        default: { state: 'testes.te' }
+        default: { state: 'companies.list' }
     }
 };
 
-const testesTState = {
-	name: 'testes.te',
+const companyListState = {
+	name: 'companies.list',
 	views: {
-		'viewT': {
-			component: 'testeComponent'
+		'viewList': {
+			component: 'companyListComponent'
 		}
 	}
 };

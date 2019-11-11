@@ -16,10 +16,10 @@ import {
 } from "./app-config-routes";
 
 require("angular-block-ui");
-//require("$q");
+require('angular-input-masks/br')
 require("jquery");
 
-var jtdFrotas = angular.module('jtdFrotas', ['blockUI', ocLazyLoad, uiRouter]);
+var jtdFrotas = angular.module('jtdFrotas', ['blockUI', ocLazyLoad, uiRouter, 'ui.utils.masks']);
 
 import { blockUIConfig, Interceptor, exceptionConfig  } from "./app-config";
 jtdFrotas.config(blockUIConfig);

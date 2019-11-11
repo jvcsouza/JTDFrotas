@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JTDBusiness", "JTDBusiness\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JTDWebApp", "JTDWebApp\JTDWebApp.csproj", "{E8E13D35-439E-4DE3-A643-22B543A4A17B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "APICnpj\API.csproj", "{B5575FCC-1FA5-4F6E-940C-77B597F9EDF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIs", "APICnpj\APIs.csproj", "{B5575FCC-1FA5-4F6E-940C-77B597F9EDF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
