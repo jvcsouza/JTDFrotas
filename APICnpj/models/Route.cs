@@ -2,51 +2,59 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace API.models
+namespace APIs.models
 {
-    public class Route
+    public class Routes
     {
-        [JsonProperty("destination_addresses")]
-        public List<string> DestinationAddresses { get; set; }
-
-        [JsonProperty("origin_addresses")]
-        public List<string> OriginAddresses { get; set; }
-
-        [JsonProperty("rows")]
-        public List<Row> Rows { get; set; }
-
-        [JsonProperty("status")]
-        public string Status { get; set; }
-
+        [JsonIgnore]
+        public string Destiny => DestinationAddresses.FirstOrDefault();
+        [JsonIgnore]
+        public string TotalKm => Rows.First().Elements.First().Distance.Text;
+        [JsonIgnore]
+        public string Duration => Rows.First().Elements.First().Duration.Text;
+        [JsonIgnore]
+        public string Origin => OriginAddresses.FirstOrDefault();
         [JsonIgnore]
         public bool IsError => Rows.Any(e => e.Elements.Any(el => el.Status == "NOT_FOUND"));
-    }
 
-    public partial class Row
-    {
-        [JsonProperty("elements")]
-        public List<Element> Elements { get; set; }
-    }
+        [JsonProperty("destination_addresses")]
+        internal List<string> DestinationAddresses { get; set; }
 
-    public partial class Element
-    {
-        [JsonProperty("distance")]
-        public Distance Distance { get; set; }
+        [JsonProperty("origin_addresses")]
+        internal List<string> OriginAddresses { get; set; }
 
-        [JsonProperty("duration")]
-        public Distance Duration { get; set; }
+        [JsonProperty("rows")]
+        internal List<Row> Rows { get; set; }
 
         [JsonProperty("status")]
-        public string Status { get; set; }
+        internal string Status { get; set; }
     }
 
-    public partial class Distance
+    internal partial class Row
+    {
+        [JsonProperty("elements")]
+        internal List<Element> Elements { get; set; }
+    }
+
+    internal partial class Element
+    {
+        [JsonProperty("distance")]
+        internal Distance Distance { get; set; }
+
+        [JsonProperty("duration")]
+        internal Distance Duration { get; set; }
+
+        [JsonProperty("status")]
+        internal string Status { get; set; }
+    }
+
+    internal partial class Distance
     {
         [JsonProperty("text")]
-        public string Text { get; set; }
+        internal string Text { get; set; }
 
         [JsonProperty("value")]
-        public long Value { get; set; }
+        internal long Value { get; set; }
     }
 }
 

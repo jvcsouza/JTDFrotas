@@ -315,7 +315,7 @@ const companyFutureState = {
     },
     lazyLoad: function (transition) {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./modules/company/company.module */ "./app/modules/company/company.module.js")).then(mod => $ocLazyLoad.load(mod.COMPANY_MODULE));
+        return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./modules/company/company.module */ "./app/modules/company/company.module.js")).then(mod => $ocLazyLoad.load(mod.COMPANY_MODULE));
     }
 };
 
@@ -346,7 +346,7 @@ const guestFutureState = {
     },
     lazyLoad: (transition) => {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./modules/guest/guest.module */ "./app/modules/guest/guest.module.js")).then(mod => $ocLazyLoad.load(mod.GUEST_MODULE));
+        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./modules/guest/guest.module */ "./app/modules/guest/guest.module.js")).then(mod => $ocLazyLoad.load(mod.GUEST_MODULE));
     }
 }
 
