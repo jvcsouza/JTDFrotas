@@ -1,10 +1,37 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+﻿<!--<h4>Registro Viagem</h4>-->
+<!--<br />-->
+<form>
+    <div class="card mb-3">
+        <div class="card-body pb-0 pt-2">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="client">Cliente:</label>
+                    <input type="text" class="form-control" id="client" placeholder="Insira o nome de um cliente">
+                    <small id="client" class="form-text text-muted">
+                        <a href="#">Clique aqui para cadastra com CNPJ</a>
+                    </small>
+                </div>
+                <div class="form-group col">
+                    <label for="client">CNPJ:</label>
+                    <input type="text" class="form-control" id="client" disabled placeholder="Cadastro nacional de pessoa juridica">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="origin">Origem:</label>
+                    <input type="text" class="form-control" id="origin" placeholder="Origem">
+                    <small id="origin" class="form-text text-muted"><a href="#cep">Buscar por CEP</a></small>
+                </div>
+                <div class="form-group col">
+                    <label for="destiny">Destino:</label>
+                    <input type="text" class="form-control" id="destiny" placeholder="Destino">
+                    <small id="destiny" class="form-text text-muted"><a href="#cep">Buscar por CEP</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row float-right">
+        <a href="#" class="btn btn-primary">Salvar</a>
+        <button ng-click="cancel()" class="btn btn-outline-secondary">Cancelar</button>
+    </div>
+</form>

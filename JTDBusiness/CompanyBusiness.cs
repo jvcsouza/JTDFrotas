@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JTDLib;
+using JTDLib.Model;
 using Microsoft.EntityFrameworkCore;
+using JTDBusiness.Model;
+using JTDWebApp.Models;
 
 namespace JTDBusiness.Interfaces
 {
@@ -23,7 +26,7 @@ namespace JTDBusiness.Interfaces
                 Act = c.Person.Act,
                 City = c.Person.City.Name,
                 Cnpj = c.Cnpj,
-                FantasyName = c.FantasyName,
+                Name = c.Person.Name,
                 Id = c.Id,
                 Phone = c.Person.Phones.Where(p => p.IsMain).Select(p => p.PhoneNumber).FirstOrDefault()
             })
@@ -38,13 +41,36 @@ namespace JTDBusiness.Interfaces
                          Act = c.Person.Act,
                          Cnpj = c.Person.Address,
                          City = c.Person.City.Name,
-                         FantasyName = c.FantasyName,
+                         Name = c.Person.Name,
                          Id = c.Id,
                          Phone = c.Person.Phones.Where(p => p.IsMain)
                                                 .Select(p => p.PhoneNumber)
                                                 .FirstOrDefault()
                      })
                      .FirstOrDefaultAsync();
+        }
+
+        public async Task<CompanyDto> SaveCompany(Company model)
+        {
+            if (!model.Cnpj.IsValid())
+                throw new Exception("CNPJ é um campo obrigatorio!");
+
+            var exists = _context.Companies.Any(c => c.Cnpj == model.Cnpj.FormatCNPJ());
+
+            if (exists)
+                throw new Exception("Ja existe uma empresa com CNPJ informado.");
+
+            if (!model.Person.Name.IsValid())
+                throw new Exception("Nome e um campo obrigatorio");
+
+            var city = await _context.Cities.Where(c => c.Name == model.Person.City.Name).FirstOrDefaultAsync();
+
+            if (city != null)
+                model.Person.City = city;
+
+            await _context.Companies.AddAsync(model);
+
+            return model;
         }
     }
 }

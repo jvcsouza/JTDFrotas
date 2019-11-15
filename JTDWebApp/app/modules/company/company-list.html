@@ -1,16 +1,16 @@
 <div class="d-flex justify-content-between row flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h3 class="col-sm-8">Companias</h3>
+    <h3 class="col-sm-8 font-weight-light">Companias</h3>
     <div class="btn-toolbar col-sm-4">
         <div class="btn-group btn-block">
             <button type="button"
-                    class="
+                    class="sticky-top font-weight-light
                        btn pmd-ripple-effect pmd-btn-outline btn-sm pmd-btn-raised
                        pmd-ripple-effect btn-default"
                     ng-click="openModalCnpj()">
                 Nova c/ CNPJ
             </button>
             <button type="button"
-                    class="
+                    class="sticky-top font-weight-light
                        btn pmd-ripple-effect pmd-btn-outline btn-sm pmd-btn-raised
                        pmd-ripple-effect btn-default"
                     ng-click="openModalEdit()">
@@ -19,7 +19,7 @@
         </div>
     </div>
 </div>
-<div class="table-responsive">
+<div class="table-responsive font-italic">
     <table class="table table-hover table-striped table-sm table-bordered">
         <thead class="thead-dark">
             <tr class="text-center">
@@ -28,17 +28,18 @@
                 <th>CNPJ</th>
                 <th>Cidade</th>
                 <th>Telefone</th>
-                <th>Ativo</th>
+                <!-- <th>Ativo</th> -->
             </tr>
         </thead>
-        <tbody>
-            <tr ng-if="companies.length > 0" ng-repeat="com in companies" class="text-center">
-                <td ng-click="teste(com.FantasyName)"><a href="#companies">{{com.Id}}</a></td>
-                <td>{{com.FantasyName}}</td>
+        <tbody class="text-capitalize">
+            <tr ng-click="openOptions(com.Name)" ng-if="companies.length > 0" 
+                ng-repeat="com in companies" class="text-center" style="cursor: pointer;" >
+                <td>{{com.Id}}</td>
+                <td>{{com.Name}}</td>
                 <td>{{com.Cnpj}}</td>
                 <td>{{com.City}}</td>
                 <td>{{com.Phone}}</td>
-                <td><input type="checkbox" ng-disabled=true ng-checked="com.Act"></td>
+                <!-- <td><input type="checkbox" ng-click="alert" class="form-control" ng-disabled=true ng-checked="com.Act"></td> -->
             </tr>
             <tr>
                 <td ng-if="companies.length == 0" class="text-center" colspan="6">Não existem dados...</td>

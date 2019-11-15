@@ -5,7 +5,7 @@ namespace APIs
 {
     public class CEP
     {
-        public static models.CEP consultarCEP(string cep)
+        public static models.CEP SearchCEP(string cep)
         {
             var WCliente = Commons.coders();
             cep = Regex.Replace(cep, "[^0-9]", "");

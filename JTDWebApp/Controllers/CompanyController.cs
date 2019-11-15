@@ -1,4 +1,6 @@
 ﻿using JTDBusiness.Interfaces;
+using JTDLib;
+using JTDLib.Model;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -7,11 +9,22 @@ namespace JTDWebApp.Controllers
     [RoutePrefix("api/company")]
     public class CompanyController : ApiController
     {
-        private ICompanyService _service;
+        private readonly ICompanyService _service;
+        private readonly JTDContext _context;
 
-        public CompanyController(ICompanyService service)
+        public CompanyController(JTDContext context ,ICompanyService service)
         {
             _service = service;
+            _context = context;
+        }
+
+        [HttpPost]
+        [Route("SaveCompany")]
+        public async Task<IHttpActionResult> SaveCompany(Company model)
+        {
+            var comp = await _service.SaveCompany(model);
+            await _context.SaveChangesAsync();
+            return Ok(comp);
         }
 
         [HttpGet]

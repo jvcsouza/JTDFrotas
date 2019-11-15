@@ -12,6 +12,8 @@ export function companyServices($http) {
         return $http.get(api + 'integrations/cnpj/' + cnpjClean);
     }
 
+    service.saveCompany = (company) => $http.post(api + 'company/SaveCompany', company);
+
     return service;
 }
 

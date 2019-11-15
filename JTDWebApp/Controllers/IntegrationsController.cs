@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using APIs;
 using System.Text.RegularExpressions;
+using System;
+using APIs.models;
 
 namespace JTDWebApp.Controllers
 {
@@ -14,19 +16,21 @@ namespace JTDWebApp.Controllers
         [Route("cnpj/{cnpj}")]
         public async Task<IHttpActionResult> GetCompany([FromUri]string cnpj)
         {
-            var company = CNPJ.consultaCNPJ(cnpj);
+            var company = CNPJ.SearchCNPJ(cnpj);
 
             if (!company.IsError)
                 return Ok(new Company()
                 {
                     Activity = company.AtividadePrincipal.First().Text,
                     Cnpj = company.Cnpj,
-                    FantasyName = company.Fantasia,
+                    FantasyName = !string.IsNullOrWhiteSpace(company.Fantasia)
+                                    ? company.Fantasia : company.Nome,
                     Person = new Person()
                     {
                         City = new City()
                         {
-                            Name = company.Municipio
+                            Name = company.Municipio,
+                            State = new State() { Initials = company.Uf }
                         },
                         Name = company.Nome,
                         Address = company.Logradouro,
@@ -34,6 +38,7 @@ namespace JTDWebApp.Controllers
                         Act = true,
                         Phones = company.Telefone.Split('/').Select((t, i) => new Phone()
                         {
+                            IsMain = i == 0,
                             Contact = company.Qsa[i]?.Nome ?? "",
                             PhoneNumber = t.Trim()
                         })
@@ -47,17 +52,47 @@ namespace JTDWebApp.Controllers
         [Route("maps/")]
         public async Task<IHttpActionResult> GetMaps([FromUri]TravelModel dto)
         {
-            var route = MAPS.consultaMaps(dto.Origin, dto.Destiny);
+            var route = MAPS.SearchMap(dto.Origin, dto.Destiny);
 
             if (route.IsError)
-                return BadRequest("Rota não existe ou não foi encontrada");
+                throw new Exception("Rota não existe ou não foi encontrada");
 
             return Ok(new
             {
-                Destiny = route.DestinationAddresses.FirstOrDefault(),
-                TotalKm = route.Rows.First().Elements.First().Distance.Text,
-                Duration = route.Rows.First().Elements.First().Duration.Text,
-                Origin = route.OriginAddresses.FirstOrDefault(),
+                route.Destiny,
+                route.TotalKm,
+                route.Duration,
+                route.Origin,
+            });
+        }
+
+        [HttpGet]
+        [Route("maps/direction/")]
+        public async Task<IHttpActionResult> GetDirection([FromUri]TravelModel dto)
+        {
+            var direction = MAPS.GetDirection(dto.Origin, dto.Destiny);
+
+            if (!direction.StatusOk)
+                throw new Exception("Rota não existe ou não foi encontrada");
+
+            return Ok(new
+            {
+                direction.Distance,
+                direction.Duration,
+                direction.Destiny,
+                direction.Origin,
+                StartAdress = new Locatization()
+                {
+                    Lat = direction.Start.Lat,
+                    Long = direction.Start.Long,
+                },
+                EndAdress = new Locatization()
+                {
+                    Lat = direction.End.Lat,
+                    Long = direction.End.Long,
+                },
+                direction.StatusOk,
+                direction.Copyrights
             });
         }
 
@@ -69,7 +104,7 @@ namespace JTDWebApp.Controllers
             if (string.IsNullOrEmpty(cep.Trim()))
                 return BadRequest("CEP Inválido ou não encontrado");
 
-            var dto = CEP.consultarCEP(cep);
+            var dto = APIs.CEP.SearchCEP(cep);
             return Ok(new
             {
                 CEP = dto.Cep,

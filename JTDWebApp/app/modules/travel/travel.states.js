@@ -3,10 +3,9 @@
     name: 'travels',
     url: '/travels',
     dsr: true,
-    sticky: true,
     views: {
         'viewTravel': {
-            template: '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>'
+            template: '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>',
         }
     },
     deepStateRedirect: {
@@ -19,16 +18,16 @@ export const travelDetailState = {
     url: '/:id',
     views: {
         'viewDetail': {
-            component: 'travelDetailComponent'
+            component: 'travelDetailComponent',
         }
-    }
+    },
 };
 
 export const travelListState = {
     name: 'travels.list',
     views: {
         'viewList': {
-            component: 'travelListComponent'
-        }
+            component: 'travelListComponent',
+        },
     }
 };

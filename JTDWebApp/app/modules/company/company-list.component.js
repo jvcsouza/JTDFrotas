@@ -13,6 +13,41 @@ export const companyListComponent = {
             timer: 3000
         });
 
+        var CNPJIsValid = (value) => {
+
+            var cnpj = value.replace(/[\.\-//]?/g, '');
+
+            if (/[\D]/g.test(cnpj))
+                return 'O CNPJ deve conter apenas numeros.';
+
+            if (cnpj.length !== 14)
+                return 'O valor informado nao e um CNPJ valido.';
+        };
+
+        var searchCNPJ = (cnpj) => 
+            companyServices.searchCnpj(cnpj)
+                           .then(rs => {
+                                if (!rs)
+                                    throw rs;
+                                return rs;
+                            });
+
+        var saveCompany = company =>
+            companyServices.saveCompany(company)
+            .then(rs => {
+                console.log(rs);
+                Toast.fire({
+                    icon: "success",
+                    title: "Operacao Concluida!",
+                });
+                getCompanies();
+                return rs;
+            });
+
+            var getCompanies = () =>  
+                companyServices.getCompanies()
+                .success(r => $scope.companies = r)
+                .error(e => { throw e; });
 
         $scope.openModalCnpj = () => {
             Swal.fire({
@@ -29,23 +64,11 @@ export const companyListComponent = {
                 showCancelButton: true,
                 confirmButtonText: 'Buscar',
                 showLoaderOnConfirm: true,
-                inputValidator: (value) => {
-                    var cnpj = value.replace(/[\.\-//]?/g, '');
-
-                    if (/[\D]/g.test(cnpj))
-                        return 'O CNPJ deve conter apenas numeros.';
-
-                    if (cnpj.length !== 14)
-                        return 'O valor informado nao e um CNPJ valido.';
-                },
-                preConfirm: (cnpj) =>
-                    companyServices.searchCnpj(cnpj).then(rs => {
-                        if (!rs)
-                            throw rs;
-                        return rs;
-                    }),
+                inputValidator: CNPJIsValid,
+                preConfirm: searchCNPJ,
                 allowOutsideClick: () => !Swal.isLoading()
-            }).then((result) => {
+            })
+            .then((result) => {
                 if (result.value.status === 200) {
                     Swal.fire({
                         title: `CNPJ Encontrado!`,
@@ -56,19 +79,51 @@ export const companyListComponent = {
                         cancelButtonColor: '#d33',
                         cancelButtonText: 'Esta errado, quero cancelar.',
                         confirmButtonText: 'Esta correto, pode salvar.',
-                        preConfirm: () => Toast.fire({
-                            icon: "success",
-                            title: "Operação Concluida!",
-                        }),
+                        preConfirm: () => saveCompany(result.value.data),
                     });
                 }
             })
         }
 
-        $scope.teste = (t) => alert("Editando usuario: " + t);
-
-        companyServices.getCompanies()
-            .success(r => $scope.companies = r)
-            .error(e => { throw e; });
+        $scope.openOptions = (t) => 
+            new window.$.confirm({
+                title: t,
+                titleClass: 'd-inline-block text-truncate',
+                content: 'Selecione uma das opÃ§Ãµes abaixo...',
+                type: 'dark',
+                animateFromElement: false,
+                animation: 'scale',
+                closeAnimation: 'scale',
+                animationBounce: 1.5,
+                typeAnimated: true,
+                backgroundDismiss: true,
+                bgOpacity: true,
+                buttons: {
+                    Exclude: {
+                        text: 'Excluir',
+                        btnClass: 'btn btn-red float-left',
+                        action: function () {
+                            console.log(this);
+                            alert('Excluir');
+                        }
+                    },
+                    Travel: {
+                        text: 'Viagem',
+                        btnClass: 'btn-dark',
+                        action: () => alert('VIAGEM')
+                    },
+                    Edit: {
+                        text: 'Editar',
+                        btnClass: 'btn btn-outline-secondary',
+                        action: function () {
+                            console.log(this);
+                            alert('Editar');
+                        }
+                    },
+            },
+        });
+    
+        getCompanies();
+       
     }]
 };
