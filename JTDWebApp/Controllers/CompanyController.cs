@@ -12,7 +12,7 @@ namespace JTDWebApp.Controllers
         private readonly ICompanyService _service;
         private readonly JTDContext _context;
 
-        public CompanyController(JTDContext context ,ICompanyService service)
+        public CompanyController(JTDContext context, ICompanyService service)
         {
             _service = service;
             _context = context;

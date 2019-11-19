@@ -22,12 +22,14 @@ namespace JTDWebApp.App_Start
 
         private static void RegisterServices(Container container)
         {
-            container.Register<JTDContext>(() => new JTDContext(),Lifestyle.Scoped);
+            container.Register<JTDContext>(() => new JTDContext(), Lifestyle.Scoped);
 
             container.Register<IPersonService, PersonBusiness>();
-
+            container.Register<ITravelService, TravelBusiness>();
             container.Register<ICompanyService, CompanyBusiness>();
             container.Register<IGuestService, GuestBusiness>();
+            container.Register<IMaintenanceService, MaintenanceBusiness>();
+            container.Register<IVehicleService, VehicleBusiness>();
         }
     }
 }

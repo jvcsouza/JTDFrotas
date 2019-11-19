@@ -306,6 +306,7 @@
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntegrationsController.cs" />
+    <Compile Include="Controllers\TravelController.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1201,6 +1202,7 @@
     <Folder Include="Views\Company\" />
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Integrations\" />
+    <Folder Include="Views\Travel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
