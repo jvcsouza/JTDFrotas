@@ -13,10 +13,12 @@ namespace JTDBusiness.Interfaces
     public class CompanyBusiness : ICompanyService
     {
         private readonly JTDContext _context;
+        private readonly ICityService _cityService;
 
-        public CompanyBusiness(JTDContext context)
+        public CompanyBusiness(JTDContext context, ICityService cityService)
         {
             _context = context;
+            _cityService = cityService;
         }
 
         public async Task<List<CompanyDto>> GetCompanies()
@@ -63,7 +65,7 @@ namespace JTDBusiness.Interfaces
             if (!model.Person.Name.IsValid())
                 throw new Exception("Nome e um campo obrigatorio");
 
-            var city = await _context.Cities.Where(c => c.Name == model.Person.City.Name).FirstOrDefaultAsync();
+            var city = await _cityService.GetByName(model.Person.City.Name);
 
             if (city != null)
                 model.Person.City = city;
