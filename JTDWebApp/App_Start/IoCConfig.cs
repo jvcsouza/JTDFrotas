@@ -30,6 +30,7 @@ namespace JTDWebApp.App_Start
             container.Register<IGuestService, GuestBusiness>();
             container.Register<IMaintenanceService, MaintenanceBusiness>();
             container.Register<IVehicleService, VehicleBusiness>();
+            container.Register<ICityService, CityBusiness>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JTDBusiness.Interfaces;
@@ -17,28 +18,52 @@ namespace JTDBusiness
             _context = context;
         }
 
+        public void Validade(GuestDto guest)
+        {
+            if (guest == null)
+                throw new ArgumentException("Pessoa informada não encontrada");
+        }
+
+        public async Task<GuestDto> GetDrive(int id)
+        {
+            var guest = await _context.Guests
+                                      .Where(g => g.Person.Id == id)
+                                      .Where(p => p.Type == PersonType.Driver)
+                                      .FirstOrDefaultAsync();
+            return guest;
+        }
+
+        public async Task<List<DriverDto>> GetDrivers()
+        {
+            return await _context.Guests
+               .Where(g => g.Type == PersonType.Driver)
+               .Select(g => new DriverDto()
+               {
+                   Phone = g.Person.Phones.Where(p => p.IsMain).Select(p => p.PhoneNumber).FirstOrDefault(),
+                   ContactName = g.Person.Phones.Where(p => p.IsMain).Select(p => p.Contact).FirstOrDefault(),
+                   City = g.Person.City.Name,
+                   Name = g.Person.Name,
+                   Cpf = g.Cpf,
+                   Id = g.Id,
+                   LicenseId = g.LicenseId,
+                   LicenseType = g.License.Type
+               })
+               .ToListAsync();
+        }
+
         public async Task<GuestDto> GetGuest(int id)
         {
-            var pe = _context.Guests.Where(g => g.Person.Id == id)
-                .Select(g => new GuestDto()
-                {
-                    Phone = g.Person.Phones.Where(p => p.IsMain).Select(p => p.PhoneNumber).FirstOrDefault(),
-                    ContactName = g.Person.Phones.Where(p => p.IsMain).Select(p => p.Contact).FirstOrDefault(),
-                    City = g.Person.City.Name,
-                    Name = g.Person.Name,
-                    Cpf = g.Cpf,
-                    Id = g.Id
-                })
-                .FirstOrDefaultAsync();
-
-            var r = await pe;
-
-            return r;
+            var guest = await _context.Guests
+                                      .Where(g => g.Person.Id == id)
+                                      .Where(p => p.Type == PersonType.Client)
+                                      .FirstOrDefaultAsync();
+            return guest;
         }
 
         public async Task<List<GuestDto>> GetGuests()
         {
             return await _context.Guests
+               .Where(g => g.Type == PersonType.Client)
                .Select(g => new GuestDto()
                {
                    Phone = g.Person.Phones.Where(p => p.IsMain).Select(p => p.PhoneNumber).FirstOrDefault(),
