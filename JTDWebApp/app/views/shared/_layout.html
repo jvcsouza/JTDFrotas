@@ -2,14 +2,14 @@
 <html>
 <link rel="stylesheet" type="text/css" href="./app/views/shared/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="./app/views/shared/dashboard.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="./app/assets/estilos.css">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
 <!--<script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-<body>
+
+<body style="height: 100%;">
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#home">JTDFrotas</a>
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
@@ -19,55 +19,64 @@
             </li>
         </ul>
     </nav>
-        <div class="row justify-content-end align-items-center m-0 w-100">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                <div class="sidebar-sticky pl-2">
-                    <ul class="nav flex-column">
-                        <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#home">
-                            <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
-                                <i class="material-icons m-2 font-weight-normal">home</i>
-                                <p class="align-self-center m-0 font-weight-normal">Dashboard</p>
-                            </li>
-                        </a>
-                        <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#travels">
-                            <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
-                                <i class="material-icons m-2">traffic</i>
-                                <p class="align-self-center m-0">Viagens</p>
-                            </li>
-                        </a>
-                        <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#companies">
-                            <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
-                                <i class="material-icons m-2">business</i>
-                                <p class="align-self-center m-0">Companias</p>
-                            </li>
-                        </a>
-                        <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#guests">
-                            <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
-                                <i class="material-icons m-2">supervisor_account</i>
-                                <p class="align-self-center m-0">Clientes</p>
-                            </li>
-                        </a>
-                        <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#companies">
-                            <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
-                                <i class="material-icons m-2">local_printshop</i>
-                                <p class="align-self-center m-0">Relatorios</p>
-                            </li>
-                        </a>
-                    </ul>
+    <div class="row justify-content-end align-items-center m-0 w-100">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky pl-2">
+                <ul class="nav flex-column">
+                    <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#home">
+                        <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                            <i class="material-icons m-2 font-weight-normal">home</i>
+                            <p class="align-self-center m-0 font-weight-normal">Dashboard</p>
+                        </li>
+                    </a>
+                    <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#travels">
+                        <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                            <i class="material-icons m-2">traffic</i>
+                            <p class="align-self-center m-0">Viagens</p>
+                        </li>
+                    </a>
+                    <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#companies">
+                        <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                            <i class="material-icons m-2">business</i>
+                            <p class="align-self-center m-0">Companias</p>
+                        </li>
+                    </a>
+                    <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#guests">
+                        <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                            <i class="material-icons m-2">supervisor_account</i>
+                            <p class="align-self-center m-0">Clientes</p>
+                        </li>
+                    </a>
+                    <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#guests">
+                        <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                            <i class="material-icons m-2">sports_motorsports</i>
+                            <p class="align-self-center m-0">Motoristas</p>
+                        </li>
+                    </a>
+                    <a class="nav-link w-100 p-0 pt-0 pb-0 d-flex justify-content-start" href="#companies">
+                        <li class="nav-item btn btn-block btn-light d-flex align-self-center justify-content-start">
+                            <i class="material-icons m-2">local_printshop</i>
+                            <p class="align-self-center m-0">Relatorios</p>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-sm-10 px-2 my-2">
+            <div class="card pmd-z-depth">
+                <div class="card-body px-5">
+                    <div id="viewTeste" ui-view="viewTeste"></div>
+                    <div id="viewCompany" ui-view="viewCompany"></div>
+                    <div id="viewDash" ui-view="viewDash"></div>
+                    <div id="viewGuest" ui-view="viewGuest"></div>
+                    <div id="viewTravel" ui-view="viewTravel"></div>
                 </div>
-            </nav>
-            <main role="main" class="col-sm-10 px-2 my-2">
-                <div class="card pmd-z-depth">
-                    <div class="card-body px-5">
-                        <div id="viewTeste" ui-view="viewTeste"></div>
-                        <div id="viewCompany" ui-view="viewCompany"></div>
-                        <div id="viewDash" ui-view="viewDash"></div>
-                        <div id="viewGuest" ui-view="viewGuest"></div>
-                        <div id="viewTravel" ui-view="viewTravel"></div>
-                    </div>
-                </div>
-            </main>
-            <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
-        </div>
+            </div>
+        </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7yhJ82pacq_YAidfXTgqYhcjFfTd-E80">
+        </script>
+    </div>
 </body>
+
 </html>

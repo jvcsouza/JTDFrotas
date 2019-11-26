@@ -233,6 +233,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums.cs" />
     <Compile Include="JTDContext.cs" />
     <Compile Include="Migrations\20191006224434_Init.cs" />
     <Compile Include="Migrations\20191006224434_Init.designer.cs">

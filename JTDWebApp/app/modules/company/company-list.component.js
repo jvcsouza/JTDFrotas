@@ -14,7 +14,6 @@ export const companyListComponent = {
         });
 
         var CNPJIsValid = (value) => {
-
             var cnpj = value.replace(/[\.\-//]?/g, '');
 
             if (/[\D]/g.test(cnpj))
