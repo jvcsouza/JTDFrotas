@@ -1,37 +1,77 @@
-﻿<!--<h4>Registro Viagem</h4>-->
-<!--<br />-->
-<form>
-    <div class="card mb-3">
-        <div class="card-body pb-0 pt-2">
-            <div class="form-row">
-                <div class="form-group col">
-                    <label for="client">Cliente:</label>
-                    <input type="text" class="form-control" id="client" placeholder="Insira o nome de um cliente">
-                    <small id="client" class="form-text text-muted">
-                        <a href="#">Clique aqui para cadastra com CNPJ</a>
-                    </small>
+﻿<div class="card row shadow-sm px-2">
+    <form class="col pl-0">
+        <div class="card-body pt-2">
+            <div class="card-title m-3">
+                <h4 class="h4 font-weight-light">Registro Viagem</h4>
+            </div>
+            <div class="row container">
+                <div class="col-sm-6 py-4">
+                    <div class="form-group col">
+                        <label for="client">Cliente:</label>
+                        <input type="text" class="form-control" id="client" placeholder="Insira o nome de um cliente">
+                        <small id="client" class="form-text text-muted">
+                            <a href="javascript:" ng-click="openModalCnpj()">Clique aqui para cadastrar com CNPJ</a>
+                        </small>
+                    </div>
+                    <div class="form-group col">
+                        <label for="origin">Origem:</label>
+                        <input type="text" class="form-control" id="origin" placeholder="Origem">
+                        <small id="origin" class="form-text text-muted"><a href="#cep">Buscar por CEP</a></small>
+                    </div>
+                    <div class="form-group col">
+                        <label for="destiny">Destino:</label>
+                        <input type="text" class="form-control" id="destiny" placeholder="Destino">
+                        <small id="destiny" class="form-text text-muted"><a href="#cep">Buscar por CEP</a></small>
+                    </div>
+                    <div class="row float-right mr-1">
+                        <a href="javascript:" ng-click="initMap()" class="btn btn-primary">Salvar</a>
+                        <button ng-click="initMap()" class="btn btn-outline-secondary ml-1">InitMaps</button>
+                        <button ng-click="cancel()" class="btn btn-outline-secondary ml-1">Cancelar</button>
+                    </div>
                 </div>
-                <div class="form-group col">
-                    <label for="client">CNPJ:</label>
-                    <input type="text" class="form-control" id="client" disabled placeholder="Cadastro nacional de pessoa juridica">
+                <div class="col-sm-6">
+                    <div class="card col col-sm-12 h-100 shadow-sm">
+                        <div class="row h-100">
+                            <div id="map" class="col-sm-12" style="overflow: hidden;"></div>
+                        </div>
+                        <div class="card-body py-2 px-0">
+                            <label for="">Cliente: </label>
+                            <strong>Serviço de Correios e Cia</strong>
+                            <div class="w-100"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">De: </label>
+                                    <strong>Orindiúva</strong>
+                                </div>
+                                <div class="col">
+                                    <label for="">Para: </label>
+                                    <strong>São josé do rio preto</strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Km total: </label>
+                                    <strong>50km</strong>
+                                </div>
+                                <div class="col">
+                                    <label for="">Duração: </label>
+                                    <strong>27min</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col">
-                    <label for="origin">Origem:</label>
-                    <input type="text" class="form-control" id="origin" placeholder="Origem">
-                    <small id="origin" class="form-text text-muted"><a href="#cep">Buscar por CEP</a></small>
-                </div>
-                <div class="form-group col">
-                    <label for="destiny">Destino:</label>
-                    <input type="text" class="form-control" id="destiny" placeholder="Destino">
-                    <small id="destiny" class="form-text text-muted"><a href="#cep">Buscar por CEP</a></small>
-                </div>
-            </div>
+
+        </div>
+</div>
+</form>
+</div>
+</div>
+<div class="card row mt-3">
+    <div class="card-body pb-0 pt-2">
+        <div class="card-title m-3">
+            <h4 class="h4 font-weight-light">Veiculos/Motoristas</h4>
         </div>
     </div>
-    <div class="row float-right">
-        <a href="#" class="btn btn-primary">Salvar</a>
-        <button ng-click="cancel()" class="btn btn-outline-secondary">Cancelar</button>
-    </div>
-</form>
+</div>
