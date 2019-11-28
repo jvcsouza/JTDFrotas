@@ -1,4 +1,5 @@
 ﻿using JTDLib.Model;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace JTDBusiness.Interfaces
@@ -7,5 +8,6 @@ namespace JTDBusiness.Interfaces
     {
         Task<City> GetByName(string name);
         Task<City> Get(int id);
+        Task<List<City>> GetCities();
     }
 }

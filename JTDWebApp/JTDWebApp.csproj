@@ -301,6 +301,7 @@
     <Compile Include="App_Start\IoCConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GuestController.cs" />
@@ -1199,6 +1200,7 @@
     <Folder Include="app\assets\js\" />
     <Folder Include="app\directives\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\City\" />
     <Folder Include="Views\Company\" />
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Integrations\" />
