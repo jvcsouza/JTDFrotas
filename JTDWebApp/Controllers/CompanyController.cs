@@ -1,6 +1,7 @@
 ﻿using JTDBusiness.Interfaces;
 using JTDLib;
 using JTDLib.Model;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -34,6 +35,17 @@ namespace JTDWebApp.Controllers
             var p = await _service.GetCompanies();
 
             return Ok(p);
+        }
+
+        [HttpGet]
+        [Route("GetCompaniesWithParams/{name}")]
+        public async Task<IHttpActionResult> GetCompaniesWithParams(string name)
+        {
+            var p = await _service.GetCompanies();
+
+            var rs = p.Where(c => c.Name.Contains(name.ToUpper())).ToArray();
+
+            return Ok(rs);
         }
 
         [HttpGet]

@@ -81,12 +81,12 @@ namespace JTDWebApp.Controllers
                 direction.Duration,
                 direction.Destiny,
                 direction.Origin,
-                StartAdress = new Locatization()
+                StartAddress = new Locatization()
                 {
                     Lat = direction.Start.Lat,
                     Long = direction.Start.Long,
                 },
-                EndAdress = new Locatization()
+                EndAddress = new Locatization()
                 {
                     Lat = direction.End.Lat,
                     Long = direction.End.Long,

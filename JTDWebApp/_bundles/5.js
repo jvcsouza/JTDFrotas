@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
 
 /***/ "./app/modules/travel/travel-detail.component.js":
 /*!*******************************************************!*\
@@ -19,7 +19,7 @@ const travelDetailComponent = {
     dados: "<"
   },
   template: __webpack_require__(/*! ./travel-detail.html */ "./app/modules/travel/travel-detail.html"),
-//   styleUrls: require("C:\\jtdfrotas\\JTDWebApp\\node_modules\\easy-autocomplete\\src\\sass\\easy-autocomplete.scss"),
+  styleUrls: __webpack_require__(/*! C:/jtdfrotas/JTDWebApp/node_modules/easy-autocomplete/src/sass/easy-autocomplete.scss */ "./node_modules/easy-autocomplete/src/sass/easy-autocomplete.scss"),
   controller: [
     "$scope",
     "$stateParams",
@@ -350,4 +350,4 @@ const travelListState = {
 /***/ })
 
 }]);
-//# sourceMappingURL=0.js.map
+//# sourceMappingURL=5.js.map

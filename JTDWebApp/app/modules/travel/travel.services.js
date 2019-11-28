@@ -9,6 +9,12 @@ export function travelServices($http) {
 
     service.getTravel = (id) => $http.get(api + 'travel/' + id);
 
+    service.getCities = () => $http.get(api + 'city/GetCities');
+
+    service.getCompanies = (name) => $http.get(api + 'Company/GetCompaniesWithParams/' + name);
+
+    service.GetDirections = (model) => $http.get(api + 'integrations/maps/direction?' + $.param(model));
+
     return service;
 }
 

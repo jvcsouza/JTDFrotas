@@ -16,6 +16,7 @@ import {
 } from "./app-config-routes";
 
 require("angular-block-ui");
+require("easy-autocomplete");
 require('angular-input-masks/br')
 require("jquery");
 

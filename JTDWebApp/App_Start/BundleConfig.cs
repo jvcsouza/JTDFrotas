@@ -47,6 +47,7 @@ namespace JTDWebApp
                       "~/node_modules/sweetalert2/dist/sweetalert2.min.css",
                       "~/node_modules/angular-material/angular-material.css",
                       "~/node_modules/propellerkit/dist/css/propeller.min.css",
+                      "~/node_modules/easy-autocomplete/dist/easy-autocomplete.css",
                       "~/Content/x0popup.default.css",
                       "~/Content/easy-loading.min.css"));
                       //"~/Content/site.css"));

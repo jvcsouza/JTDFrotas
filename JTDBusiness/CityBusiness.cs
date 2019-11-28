@@ -19,7 +19,7 @@ namespace JTDBusiness
             _context = context;
         }
 
-        public void Validade(City city)
+        public void Validate(City city)
         {
             if (city == null)
                 throw new ArgumentException("Cidade não encontrada");
@@ -29,9 +29,15 @@ namespace JTDBusiness
         {
             var city = await _context.Cities.Where(c => c.Id == id).FirstOrDefaultAsync();
 
-            Validade(city);
+            Validate(city);
 
             return city;
+        }
+
+        public async Task<List<City>> GetCities()
+        {
+            var cities = await _context.Cities.Distinct().ToListAsync();
+            return cities;
         }
 
         public async Task<City> GetByName(string name)

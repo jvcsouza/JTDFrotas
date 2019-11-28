@@ -501,6 +501,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 __webpack_require__(/*! angular-block-ui */ "./node_modules/angular-block-ui/dist/angular-block-ui.js");
+__webpack_require__(/*! easy-autocomplete */ "./node_modules/easy-autocomplete/dist/jquery.easy-autocomplete.js");
 __webpack_require__(/*! angular-input-masks/br */ "./node_modules/angular-input-masks/br.js")
 __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
