@@ -275,6 +275,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Utils">
+      <HintPath>..\Utils\bin\Debug\netstandard2.0\Utils.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -304,6 +307,7 @@
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntegrationsController.cs" />
@@ -314,6 +318,7 @@
     </Compile>
     <Compile Include="Models\CompanyDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app-config-compileProvider.js" />
@@ -1203,6 +1208,7 @@
     <Folder Include="Views\City\" />
     <Folder Include="Views\Company\" />
     <Folder Include="Views\Dashboard\" />
+    <Folder Include="Views\Driver\" />
     <Folder Include="Views\Integrations\" />
     <Folder Include="Views\Travel\" />
   </ItemGroup>

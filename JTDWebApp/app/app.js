@@ -13,6 +13,8 @@ import {
     , companyFutureState
     , guestFutureState
     , travelFutureState
+    , vehicleFutureState
+    , driverFutureState
 } from "./app-config-routes";
 
 require("angular-block-ui");
@@ -43,6 +45,8 @@ jtdFrotas.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $locatio
     $stateRegistry.register(companyFutureState);
     $stateRegistry.register(guestFutureState);
     $stateRegistry.register(travelFutureState);
+    $stateRegistry.register(vehicleFutureState);
+    $stateRegistry.register(driverFutureState);
 }]);
 jtdFrotas.controller("mainController", mainControler);
 window.jtd = jtdFrotas;

@@ -8,35 +8,32 @@
                 <div class="col-sm-6 py-4">
                     <div class="form-group col">
                         <label for="client">Cliente:</label>
-                        <input type="text" class="form-control" id="client" ng-model="card.Company" placeholder="Insira o nome de um cliente">
+                        <input type="text" class="form-control" id="client" ng-model="company"
+                            placeholder="Insira o nome de um cliente">
                         <small id="client" class="form-text text-muted">
                             <a href="javascript:" ng-click="openModalCnpj()">Clique aqui para cadastrar com CNPJ</a>
                         </small>
                     </div>
                     <div class="form-group col">
-                        <label for="origin">Origem:</label>
-                        <input type="text" list="cities" class="form-control" id="origin" ng-change="searchCity(origin)"
-                            ng-model="origin" placeholder="Origem">
-                        <small id="origin" class="form-text text-muted">
+                        <label for="orig">Origem:</label>
+                        <input type="text" class="form-control" id="orig" ng-model="origin" placeholder="Origem">
+                        <small id="orig" class="form-text text-muted">
                             <a href="javascript:" ng-class="{'text-muted': !originCep }"
                                 ng-click="originCep = !originCep">Buscar por CEP</a>
                         </small>
                     </div>
                     <div class="form-group col">
-                        <label for="destiny">Destino:</label>
-                        <input type="text" list="cities" class="form-control" id="destiny" ng-model="destiny"
+                        <label for="destination">Destino:</label>
+                        <input type="text" class="form-control" id="destination" ng-model="destiny"
                             placeholder="Destino">
-                        <small id="destiny" class="form-text text-muted">
+                        <small id="destination" class="form-text text-muted">
                             <a href="javascript:" ng-class="{'text-muted': !destinyCep }"
                                 ng-click="destinyCep = !destinyCep">Buscar por CEP</a>
                         </small>
-                        <datalist id="cities">
-                            <option ng-repeat="(key, value) in cityList" value={{value.Name}}>
-                        </datalist>
                     </div>
                     <div class="row float-right mr-1">
-                        <button ng-click="updateMaps(origin, destiny)"
-                            ng-disabled="!(destiny.length > 0 && origin.length > 0)"
+                        <button ng-click="updateMaps()"
+                            ng-disabled="!(destiny.length > 0 && origin.length > 0 && company.length > 0)"
                             class="btn btn-primary ml-1">Atualizar</button>
                         <button ng-click="cancel()" class="btn btn-outline-secondary ml-1">Cancelar</button>
                     </div>
@@ -49,7 +46,7 @@
                         <div class="card-body py-3 px-0">
                             <div class="col no-wrap px-0">
                                 <label for="">Cliente: </label>
-                                <strong>{{card.Company}}</strong>
+                                <strong class="text-truncate">{{card.Company}}</strong>
                             </div>
                             <!-- <div class="row"> -->
                             <div class="col no-wrap px-0">

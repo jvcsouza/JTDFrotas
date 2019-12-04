@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Filters;
 using System.Web.Mvc;
@@ -33,7 +29,8 @@ namespace JTDWebApp.Filters
                 Content = new ObjectContent<ResponseMessage>(new ResponseMessage
                 {
                     Title = "Validação",
-                    Message = filterContext.Exception.Message
+                    Message = filterContext.Exception.Message,
+                    InnerException = filterContext.Exception.InnerException
                 },
                 new JsonMediaTypeFormatter()),
             });
@@ -44,6 +41,7 @@ namespace JTDWebApp.Filters
     {
         public string Title { get; set; }
         public string Message { get; set; }
+        public object InnerException { get; set; }
     }
 
 }

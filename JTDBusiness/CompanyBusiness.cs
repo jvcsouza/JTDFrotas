@@ -57,7 +57,9 @@ namespace JTDBusiness.Interfaces
             if (!model.Cnpj.IsValid())
                 throw new Exception("CNPJ é um campo obrigatorio!");
 
-            var exists = _context.Companies.Any(c => c.Cnpj == model.Cnpj.FormatCNPJ());
+            model.Cnpj = model.Cnpj.FormatCNPJ();
+
+            var exists = _context.Companies.Any(c => c.Cnpj == model.Cnpj);
 
             if (exists)
                 throw new Exception("Ja existe uma empresa com CNPJ informado.");
