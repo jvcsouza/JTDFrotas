@@ -43,7 +43,7 @@ namespace JTDWebApp.Controllers
         {
             var p = await _service.GetCompanies();
 
-            var rs = p.Where(c => c.Name.Contains(name.ToUpper())).ToArray();
+            var rs = p.Where(c => c.Name.Contains(name.ToUpper()) || c.Cnpj.Contains(name.ToUpper())).ToArray();
 
             return Ok(rs);
         }

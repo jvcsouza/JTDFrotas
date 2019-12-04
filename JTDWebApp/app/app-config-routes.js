@@ -101,3 +101,31 @@ export const travelFutureState = {
         return import('./modules/travel/travel.module').then(mod => $ocLazyLoad.load(mod.TRAVEL_MODULE));
     }
 }
+export const vehicleFutureState = {
+    parent: 'app',
+    name: 'vehicles.**',
+    url: '/vehicles',
+    views: {
+        'viewVehicle': {
+            template: viewCrudTemplate
+        }
+    },
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return import('./modules/vehicle/vehicle.module').then(mod => $ocLazyLoad.load(mod.VEHICLE_MODULE));
+    }
+}
+export const driverFutureState = {
+    parent: 'app',
+    name: 'drivers.**',
+    url: '/drivers',
+    views: {
+        'viewDriver': {
+            template: viewCrudTemplate
+        }
+    },
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return import('./modules/driver/driver.module').then(mod => $ocLazyLoad.load(mod.DRIVER_MODULE));
+    }
+}

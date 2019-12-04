@@ -1,19 +1,16 @@
-<div class="d-flex justify-content-between row flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div
+    class="d-flex justify-content-between row flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h3 class="col-sm-8 font-weight-light">Companias</h3>
     <div class="btn-toolbar col-sm-4">
         <div class="btn-group btn-block">
-            <button type="button"
-                    class="sticky-top font-weight-light
-                       btn pmd-ripple-effect pmd-btn-outline btn-sm pmd-btn-raised
-                       pmd-ripple-effect btn-default"
-                    ng-click="openModalCnpj()">
+            <button type="button" class="sticky-top font-weight-light
+                       btn pmd-btn-outline btn-sm pmd-btn-raised
+                     btn-default" ng-click="openModalCnpj()">
                 Nova c/ CNPJ
             </button>
-            <button type="button"
-                    class="sticky-top font-weight-light
-                       btn pmd-ripple-effect pmd-btn-outline btn-sm pmd-btn-raised
-                       pmd-ripple-effect btn-default"
-                    ng-click="openModalEdit()">
+            <button type="button" class="sticky-top font-weight-light
+                       btn pmd-btn-outline btn-sm pmd-btn-raised
+                     btn-default" ng-click="openModalEdit()">
                 Nova manual
             </button>
         </div>
@@ -32,8 +29,8 @@
             </tr>
         </thead>
         <tbody class="text-capitalize">
-            <tr ng-click="openOptions(com.Name)" ng-if="companies.length > 0" 
-                ng-repeat="com in companies" class="text-center" style="cursor: pointer;" >
+            <tr ng-click="openOptions(com.Name)" ng-if="companies.length > 0" ng-repeat="com in companies"
+                class="text-center" style="cursor: pointer;">
                 <td>{{com.Id}}</td>
                 <td>{{com.Name}}</td>
                 <td>{{com.Cnpj}}</td>

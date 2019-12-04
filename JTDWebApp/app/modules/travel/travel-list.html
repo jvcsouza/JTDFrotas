@@ -4,9 +4,9 @@
         <div class="btn-block">
             <button type="button"
                     class="
-                       btn pmd-ripple-effect pmd-btn-outline btn-sm pmd-btn-raised
-                       pmd-ripple-effect btn-default"
-                    ng-click="RedirectToDetail()">
+                       btn pmd-btn-outline btn-sm pmd-btn-raised
+                       btn-default"
+                    ng-click="loadTravel(0)">
                 Nova Viagem
             </button>
         </div>
@@ -17,24 +17,24 @@
         <thead class="thead-dark">
             <tr class="text-center">
                 <th>#</th>
-                <th>Nome</th>
-                <th>CNPJ</th>
-                <th>Cidade</th>
-                <th>Telefone</th>
-                <th>Ativo</th>
+                <th>Cliente</th>
+                <th>De</th>
+                <th>Para</th>
+                <th>Distancia</th>
+                <th>Duração</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-if="companies.length > 0" ng-repeat="com in companies" class="text-center">
-                <td ng-click="teste(com.FantasyName)"><a href="#companies">{{com.Id}}</a></td>
-                <td>{{com.FantasyName}}</td>
-                <td>{{com.Cnpj}}</td>
-                <td>{{com.City}}</td>
-                <td>{{com.Phone}}</td>
-                <td><input type="checkbox" ng-disabled=true ng-checked="com.Act"></td>
+            <tr ng-if="travels.length > 0" ng-repeat="travel in travels" class="text-center">
+                <td ng-click="loadTravel(travel.Id)"><a href="javascript:">{{travel.Id}}</a></td>
+                <td>{{travel.Client}}</td>
+                <td>{{travel.Origin}}</td>
+                <td>{{travel.Destiny}}</td>
+                <td>{{travel.TotalKmStr}}</td>
+                <td>{{travel.DurationStr}}</td>
             </tr>
             <tr>
-                <td ng-if="companies.length == 0" class="text-center" colspan="6">Não existem dados...</td>
+                <td ng-if="travels.length == 0" class="text-center" colspan="6">Não existem dados...</td>
             </tr>
         </tbody>
     </table>

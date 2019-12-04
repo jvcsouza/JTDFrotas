@@ -1,4 +1,21 @@
-﻿<h3>Clientes</h3>
+﻿<div
+    class="d-flex justify-content-between row flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h3 class="col-sm-8 font-weight-light">Clientes</h3>
+    <div class="btn-toolbar col-sm-4">
+        <div class="btn-group btn-block">
+            <button type="button" class="sticky-top font-weight-light
+                       btn pmd-btn-outline btn-sm pmd-btn-raised
+                     btn-default" ng-click="openModalCnpj()">
+                Novo c/ CPF
+            </button>
+            <button type="button" class="sticky-top font-weight-light
+                       btn pmd-btn-outline btn-sm pmd-btn-raised
+                     btn-default" ng-click="openModalEdit()">
+                Novo manual
+            </button>
+        </div>
+    </div>
+</div>
 <div class="table-responsive">
     <table class="table table-hover table-striped table-sm table-bordered">
         <thead class="thead-dark">

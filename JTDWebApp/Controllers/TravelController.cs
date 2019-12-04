@@ -1,4 +1,5 @@
 ﻿using JTDBusiness.Interfaces;
+using JTDBusiness.Model;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -17,15 +18,24 @@ namespace JTDWebApp.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> Get()
         {
-
-            return Ok();
+            var list = await _service.GetAll();
+            return Ok(list);
         }
 
         [HttpGet]
         [Route("{id}")]
         public async Task<IHttpActionResult> GetTravel(int id)
         {
-            return Ok();
+            var travel = await _service.GetTravel(id);
+            return Ok(travel);
+        }
+
+        [HttpPost]
+        [Route("Save")]
+        public async Task<IHttpActionResult> SaveTravel(TravelDto model)
+        {
+            var travel  = await _service.SaveTravel(model);
+            return Ok(travel);
         }
     }
 }

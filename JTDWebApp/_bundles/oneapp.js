@@ -250,7 +250,7 @@ jtdFrotas.config(['$compileProvider', function ($compileProvider) {
 /*!**********************************!*\
   !*** ./app/app-config-routes.js ***!
   \**********************************/
-/*! exports provided: layout, home, companyFutureState, testeFutureState, guestFutureState, travelFutureState */
+/*! exports provided: layout, home, companyFutureState, testeFutureState, guestFutureState, travelFutureState, vehicleFutureState, driverFutureState */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -261,6 +261,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "testeFutureState", function() { return testeFutureState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guestFutureState", function() { return guestFutureState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "travelFutureState", function() { return travelFutureState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "vehicleFutureState", function() { return vehicleFutureState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "driverFutureState", function() { return driverFutureState; });
 var viewCrudTemplate = '<div ui-view="viewList"></div><div ui-view="viewDetail"></div>';
 
 function localUrl() {
@@ -299,7 +301,7 @@ const home = {
     },
     lazyLoad: function (transition) {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./modules/main/main.module */ "./app/modules/main/main.module.js")).then(mod => $ocLazyLoad.load(mod.MAIN_MODULE));
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./modules/main/main.module */ "./app/modules/main/main.module.js")).then(mod => $ocLazyLoad.load(mod.MAIN_MODULE));
     }
 };
 
@@ -315,7 +317,7 @@ const companyFutureState = {
     },
     lazyLoad: function (transition) {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./modules/company/company.module */ "./app/modules/company/company.module.js")).then(mod => $ocLazyLoad.load(mod.COMPANY_MODULE));
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./modules/company/company.module */ "./app/modules/company/company.module.js")).then(mod => $ocLazyLoad.load(mod.COMPANY_MODULE));
     }
 };
 
@@ -331,7 +333,7 @@ const testeFutureState = {
     },
     lazyLoad: function (transition) {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./modules/teste/teste.module */ "./app/modules/teste/teste.module.js")).then(mod => $ocLazyLoad.load(mod.TESTE_MODULE));
+        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./modules/teste/teste.module */ "./app/modules/teste/teste.module.js")).then(mod => $ocLazyLoad.load(mod.TESTE_MODULE));
     }
 };
 
@@ -346,7 +348,7 @@ const guestFutureState = {
     },
     lazyLoad: (transition) => {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./modules/guest/guest.module */ "./app/modules/guest/guest.module.js")).then(mod => $ocLazyLoad.load(mod.GUEST_MODULE));
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./modules/guest/guest.module */ "./app/modules/guest/guest.module.js")).then(mod => $ocLazyLoad.load(mod.GUEST_MODULE));
     }
 }
 
@@ -361,7 +363,35 @@ const travelFutureState = {
     },
     lazyLoad: (transition) => {
         const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-        return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./modules/travel/travel.module */ "./app/modules/travel/travel.module.js")).then(mod => $ocLazyLoad.load(mod.TRAVEL_MODULE));
+        return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./modules/travel/travel.module */ "./app/modules/travel/travel.module.js")).then(mod => $ocLazyLoad.load(mod.TRAVEL_MODULE));
+    }
+}
+const vehicleFutureState = {
+    parent: 'app',
+    name: 'vehicles.**',
+    url: '/vehicles',
+    views: {
+        'viewVehicle': {
+            template: viewCrudTemplate
+        }
+    },
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./modules/vehicle/vehicle.module */ "./app/modules/vehicle/vehicle.module.js")).then(mod => $ocLazyLoad.load(mod.VEHICLE_MODULE));
+    }
+}
+const driverFutureState = {
+    parent: 'app',
+    name: 'drivers.**',
+    url: '/drivers',
+    views: {
+        'viewDriver': {
+            template: viewCrudTemplate
+        }
+    },
+    lazyLoad: (transition) => {
+        const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
+        return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./modules/driver/driver.module */ "./app/modules/driver/driver.module.js")).then(mod => $ocLazyLoad.load(mod.DRIVER_MODULE));
     }
 }
 
@@ -528,6 +558,8 @@ jtdFrotas.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $locatio
     $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["companyFutureState"]);
     $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["guestFutureState"]);
     $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["travelFutureState"]);
+    $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["vehicleFutureState"]);
+    $stateRegistry.register(_app_config_routes__WEBPACK_IMPORTED_MODULE_6__["driverFutureState"]);
 }]);
 jtdFrotas.controller("mainController", _modules_main_mainController__WEBPACK_IMPORTED_MODULE_3__["default"]);
 window.jtd = jtdFrotas;
