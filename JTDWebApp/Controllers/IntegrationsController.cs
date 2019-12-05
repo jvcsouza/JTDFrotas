@@ -79,6 +79,7 @@ namespace JTDWebApp.Controllers
             {
                 direction.Distance,
                 direction.Duration,
+                direction.DurationValue,
                 direction.Destiny,
                 direction.Origin,
                 StartAddress = new Locatization()

@@ -26,16 +26,29 @@ namespace JTDWebApp.Controllers
         [Route("{id}")]
         public async Task<IHttpActionResult> GetTravel(int id)
         {
-            var travel = await _service.GetTravel(id);
-            return Ok(travel);
+            var t = await _service.GetTravel(id);
+            return Ok(new
+            {
+                t.Id,
+                Client = t.Person.Name,
+                t.TotalKmStr,
+                Origin = t.Origin.Name,
+                Destiny = t.Destiny.Name,
+                t.LastChange,
+                t.DurationStr,
+                t.PersonId,
+                t.DestinyId,
+                t.OriginId,
+                OriginInit = t.Origin.State.Initials,
+                DestinyInit = t.Destiny.State.Initials
+            });
         }
 
         [HttpPost]
         [Route("Save")]
         public async Task<IHttpActionResult> SaveTravel(TravelDto model)
         {
-            var travel  = await _service.SaveTravel(model);
-            return Ok(travel);
+            return Ok(await _service.SaveTravel(model));
         }
     }
 }
