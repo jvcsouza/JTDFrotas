@@ -17,6 +17,8 @@ namespace APIs.models
         [JsonIgnore]
         public string Duration => Routes.FirstOrDefault().Legs.FirstOrDefault().Duration.Text;
         [JsonIgnore]
+        public double DurationValue => Routes.FirstOrDefault().Legs.FirstOrDefault().Duration.Value;
+        [JsonIgnore]
         public string Destiny => Routes.FirstOrDefault().Legs.FirstOrDefault().EndAddress;
         [JsonIgnore]
         public string Origin => Routes.FirstOrDefault().Legs.FirstOrDefault().StartAddress;

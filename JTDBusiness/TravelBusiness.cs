@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using JTDBusiness.Interfaces;
 using JTDBusiness.Model;
@@ -37,7 +38,13 @@ namespace JTDBusiness
 
         public async Task<Travel> GetTravel(int id)
         {
-            return await _context.Travels.Where(t => t.Id == id).FirstOrDefaultAsync();
+            return await _context.Travels.Where(t => t.Id == id)
+                                         .Include(t => t.Person)
+                                         .Include(t => t.Origin)
+                                         .ThenInclude(o => o.State)
+                                         .Include(t => t.Destiny)
+                                         .ThenInclude(d => d.State)
+                                         .FirstOrDefaultAsync();
         }
 
         public async Task IncludeVehicle(int idTravel, int idVehicle, int idGuest)
@@ -45,7 +52,7 @@ namespace JTDBusiness
             var vehicle = await _vehicleService.Get(idVehicle);
         }
 
-        public async Task<Travel> SaveTravel(TravelDto model)
+        public async Task<int> SaveTravel(TravelDto model)
         {
             var travel = new Travel()
             {
@@ -54,14 +61,16 @@ namespace JTDBusiness
                 LastChange = DateTime.Now.ToShortDateString(),
                 PersonId = model.PersonId,
                 TotalKmStr = model.TotalKm,
+                TotalKm = decimal.Parse(model.TotalKm.Replace(" km", "")),
                 RegistrationDate = DateTime.Now.ToShortDateString(),
                 OriginId = model.OriginId,
+                Duration = DateTime.Now.AddSeconds(model.DurationValue),
                 UserId = 1,
             };
 
             await _context.Travels.AddAsync(travel);
             await _context.SaveChangesAsync();
-            return travel;
+            return travel.Id;
         }
     }
 }

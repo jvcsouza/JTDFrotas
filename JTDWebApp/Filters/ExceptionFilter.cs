@@ -30,7 +30,7 @@ namespace JTDWebApp.Filters
                 {
                     Title = "Validação",
                     Message = filterContext.Exception.Message,
-                    InnerException = filterContext.Exception.InnerException
+                    InnerException = filterContext.Exception.InnerException.Message
                 },
                 new JsonMediaTypeFormatter()),
             });

@@ -8,5 +8,6 @@
         public int DestinyId { get; set; }
         public string TotalKm { get; set; }
         public string DurationStr { get; set; }
+        public double DurationValue { get; set; }
     }
 }

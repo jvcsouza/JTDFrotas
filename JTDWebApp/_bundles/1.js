@@ -14,6 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(angular__WEBPACK_IMPORTED_MODULE_0__);
 ﻿
 
+
 const travelDetailComponent = {
   bindings: {
     dados: "<"
@@ -29,10 +30,19 @@ const travelDetailComponent = {
       var divMap = document.getElementById("map");
       var directionsService = {};
       var directionsRenderer = {};
-      $scope.travel = {};
       $scope.cityList = {};
-      var places = {};
-      $scope.card = {};
+      let places = {
+        client: {},
+        origin: {},
+        destiny: {}
+      };
+      $scope.card = {
+        Destiny: "",
+        Origin: "",
+        Duration: "",
+        Distance: "",
+        Company: ""
+      };
       var scopeId = $stateParams.id;
       const Toast = Swal.mixin({
         toast: true,
@@ -102,7 +112,28 @@ const travelDetailComponent = {
       //#endregion
 
       if (scopeId != 0)
-        travelServices.getTravel(scopeId).success(rs => ($scope.travel = rs));
+        travelServices.getTravel(scopeId).success(function(travel) {
+          scopeId = travel.Id;
+          $("client")
+            .val(travel.Client)
+            .trigger("change");
+          $("orig")
+            .val(travel.Origin)
+            .trigger("change");
+          $("destination")
+            .val(travel.Destiny)
+            .trigger("change");
+          console.log(places);
+          console.log(this);
+          places.client.Id = travel.PersonId;
+          places.origin.Name = travel.Origin;
+          places.origin.Id = travel.OriginId;
+          places.origin.Initials = travel.OriginInit;
+          places.destiny.Name = travel.Destiny;
+          places.destiny.Id = travel.DestinyId;
+          places.destiny.Initials = travel.DestinyInit;
+          $scope.updateMaps();
+        });
 
       $scope.initMap = () => {
         directionsService = new window.google.maps.DirectionsService();
@@ -135,6 +166,7 @@ const travelDetailComponent = {
 
           places.duration = r.Duration;
           places.km = r.Distance;
+          places.durationValue = r.durationValue;
 
           $scope.card = {
             Destiny: r.Destiny,
@@ -157,10 +189,11 @@ const travelDetailComponent = {
               OriginId: places.origin.Id,
               DestinyId: places.destiny.Id,
               TotalKm: places.km,
-              DurationStr: places.duration
+              DurationStr: places.duration,
+              durationValue: places.durationValue
             })
-            .success(travel => {
-              $state.go("travels.detail", { id: travel.Id });
+            .success(id => {
+              $state.go("travels.detail", { id });
             });
         }
       };
