@@ -22,7 +22,7 @@
     "@uirouter/dsr": "^1.0.2",
     "@uirouter/sticky-states": "^1.5.0",
     "@uirouter/visualizer": "^6.0.2",
-    "angular": "1.5.9",
+    "angular": "1.8.0",
     "angular-animate": "1.5.9",
     "angular-auto-complete": "^1.7.4",
     "angular-block-ui": "0.2.2",
