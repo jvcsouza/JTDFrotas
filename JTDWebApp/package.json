@@ -39,7 +39,7 @@
     "file-saver": "^2.0.1",
     "imports-loader": "^0.8.0",
     "jquery": "2.2.1",
-    "lodash": "3.5.0",
+    "lodash": "4.17.19",
     "moment": "2.13.0",
     "moment-transform": "^1.0.1",
     "npm": "^6.8.0",
