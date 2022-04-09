@@ -40,7 +40,7 @@
     "imports-loader": "^0.8.0",
     "jquery": "2.2.1",
     "lodash": "3.5.0",
-    "moment": "2.13.0",
+    "moment": "2.29.2",
     "moment-transform": "^1.0.1",
     "npm": "^6.8.0",
     "oclazyload": "^1.1.0",
